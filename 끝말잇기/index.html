@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기 게임화면 만들기</title>
+    <link rel='stylesheet' type='text/css' href='./css/reset.css'>
+    <link rel='stylesheet' type='text/css' href='./css/fonts.css'>
+    <link rel='stylesheet' type='text/css' href='./css/style.css'>
+</head>
+<body>
+    <div class="backgroundAnimaition">
+        <div class="backgroundWrap">
+            <ul>
+                <!-- 추가하기 -->
+            </ul>
+        </div>
+    </div>
+    <div class="gameBox">
+        <div>
+            <h2>끝말잇기</h2>
+            <div class="howmanyPeople">
+                <div>
+                    <p>몇명이 참가하나요?</p>
+                    <div class="box">
+                        <div class="peopleBtn">
+                            <ul>
+                                <li class="btn">2명</li>
+                                <li class="btn">3명</li>
+                                <li class="btn">4명</li>
+                                <li class="btn">5명</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 게임 진행 -->
+            <div class="gameStart">
+                <h2>제시어</h2>
+                <div class="wordBox">
+                    <ul>
+                        <!-- 단어 히스토리 -->
+                        
+                    </ul>
+                </div>
+                <div class="userBox">
+                    <ul>
+                        <!-- 유저박스 -->
+                    </ul>
+                </div>
+                <div class="inputBox">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+//배경 애니메이션 만들기
+setInterval(()=>{
+    backgroundAni();
+},5000);
+backgroundAni();
+function backgroundAni(){
+    let line = document.createElement('li');
+    line.classList.add('line');
+    document.querySelector('.backgroundWrap ul').appendChild(line);
+    let random = Math.floor(Math.random()* (15000 - 10000)+ 10000);
+    line.style.left =  Math.floor(Math.random()* (window.innerWidth)-50) + 'px';
+    line.style.top = Math.floor(Math.random()* (window.innerHeight)-50) + 'px';
+    line.style.background = '#'+ Math.round(Math.random() *0xffffff).toString(16);
+   
+    setTimeout(()=>{
+        line.remove();
+    }, random);
+}
+
+//참가인원 선택
+let numbeArray = [ 2,3,4,5];
+let number = 0;
+let $people = document.querySelectorAll('.peopleBtn li');
+$people.forEach((elem,idx)=>{
+    elem.addEventListener('click',()=>{
+        number = (numbeArray[idx]);
+        document.querySelector('.howmanyPeople').remove();
+        document.querySelector('.gameStart').style.display ='flex';
+        gamestart();
+    });    
+});
+
+const gamestart =()=>{
+    let $input =  document.querySelector('input');
+    let word;
+    let newword;
+    
+    let peopleNum = 0;
+    //참가자 컬러값
+    let color = ['#FBB752', '#FF295C' ,'#81D2FF','#9CFF93','#6272FF'];
+    for(let i =0; i < number; i++ ){
+        let userIcon = document.createElement('li');
+        userIcon.classList.add('userIcon');
+        userIcon.innerHTML='<span>'+ (i+1) +'번 </span>';
+        userIcon.style.backgroundColor = color[i];
+        document.querySelector('.userBox ul').appendChild(userIcon);
+        if(i==0){
+            userIcon.classList.add('addpick');
+        }
+    }
+    let $userIcon  = document.querySelectorAll('.userIcon');
+    //게임 진행
+   const  oninput = (e)=>{
+      newword = e.target.value;
+      console.log(newword);
+   } 
+   const onEnter = (e)=>{
+        if(e.keyCode === 13){
+            
+            if( !word || word[word.length -1] == newword[0]){
+                word=newword;
+                let newWordbox = document.createElement('li');
+                newWordbox.classList.add('word');
+                newWordbox.innerHTML = '<span>'+word+'</span>';
+                document.querySelector('.wordBox ul').appendChild(newWordbox);
+                $userIcon[peopleNum].classList.remove('addpick');
+                peopleNum++;
+                if(peopleNum > number-1){
+                    peopleNum = 0;
+                }
+                document.querySelector('body').style.backgroundColor = color[peopleNum];
+                $userIcon[peopleNum].classList.add('addpick');
+                $input.value ='';
+                $input.focus();
+            }else{
+                
+            }      
+        }
+   }
+    
+    $input.addEventListener('input',oninput);
+    $input.addEventListener('keypress',onEnter);
+
+
+
+}
+</script>
