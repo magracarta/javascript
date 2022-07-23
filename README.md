@@ -1,5 +1,5 @@
 # javascript
-## hello world2
+## hello world
 
 ----
 # 프론트엔드
