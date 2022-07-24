@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #operator {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            text-align: center;
+        }
+
+        #result {
+            width: 180px;
+            height: 50px;
+            margin: 5px;
+            text-align: right;
+        }
+
+        button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <input readonly id="operator" />
+    <input readonly type="number" id="result" />
+    <div class="row">
+        <button id="num-7" value="hi">7</button>
+        <button id="num-8">8</button>
+        <button id="num-9">9</button>
+        <button id="plus">+</button>
+    </div>
+    <div class="row">
+        <button id="num-4">4</button>
+        <button id="num-5">5</button>
+        <button id="num-6">6</button>
+        <button id="minus">-</button>
+    </div>
+    <div class="row">
+        <button id="num-1">1</button>
+        <button id="num-2">2</button>
+        <button id="num-3">3</button>
+        <button id="divide">/</button>
+    </div>
+    <div class="row">
+        <button id="clear">C</button>
+        <button id="num-0">0</button>
+        <button id="equal calculrate">=</button>
+        <button id="multiply">x</button>
+    </div>
+</body>
+
+</html>
+<script>
+    let reset;
+    let numOne = '';
+    let operator = '';
+    let numTwo = '';
+    let $operator = document.querySelector('#operator');
+    let $result = document.querySelector('#result');
+    let keyP = document.querySelectorAll('.row button');
+
+    const onClickNumber = (event) => {
+        let number = event.target.textContent;
+        if (!operator) {
+            if (reset) {
+                numOne = '';
+                operator = '';
+                numTwo = '';
+                $operator.value = '';
+                $result.value = '';
+                reset = false;
+            }
+            numOne += number;
+            $result.value += number;
+            return;
+        }
+        if (!numTwo) {
+            $result.value = '';
+        }
+        numTwo += number;
+        $result.value += number;
+    };
+
+    const onClickOperation = (event) => {
+        if (numTwo) {
+            switch (operator) {
+                case '+':
+                    $result.value = parseInt(numOne) + parseInt(numTwo);
+                    break;
+                case '-':
+                    $result.value = parseInt(numOne) - parseInt(numTwo);
+                    break;
+                case 'x':
+                    $result.value = parseInt(numOne) * parseInt(numTwo);
+                    break;
+                case '/':
+                    $result.value = parseInt(numOne) / parseInt(numTwo);
+                    break;
+            }
+            numOne = $result.value;
+            numTwo = '';
+        }
+        if (numOne) {
+            operator = event.target.textContent;
+            $operator.value = event.target.textContent;
+        } else {
+            alert('숫자를 먼저 입력하세요.');
+        }
+    }
+
+    for (let i = 0; i < keyP.length; i++) {
+        keyP[i].addEventListener('click', (event) => {
+            if (isNaN(keyP[i].textContent) == false) {
+                onClickNumber(event);
+            } else {
+                if (keyP[i].textContent == '=') {
+                    if (numTwo) {
+                        switch (operator) {
+                            case '+':
+                                $result.value = parseInt(numOne) + parseInt(numTwo);
+                                break;
+                            case '-':
+                                $result.value = parseInt(numOne) - parseInt(numTwo);
+                                break;
+                            case 'x':
+                                $result.value = parseInt(numOne) * parseInt(numTwo);
+                                break;
+                            case '/':
+                                $result.value = parseInt(numOne) / parseInt(numTwo);
+                                break;
+                        }
+                    }
+                    $operator.value = '';
+                    numOne = $result.value;
+                    operator = '';
+                    numTwo = '';
+                    reset = true;
+                } else if (keyP[i].textContent == 'C') {
+                    numOne = '';
+                    operator = '';
+                    numTwo = '';
+                    $operator.value = '';
+                    $result.value = '';
+                } else {
+                    onClickOperation(event);
+                }
+            }
+        });
+    }
+
+</script>
