@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const answer = [3,1,4,6];
+    const value = '3,2,1,4';
+    let strike = 0;
+    let ball = 0;
+    //배열에 대한 반복문
+    answer.forEach((element,i)=>{
+        const index = value.indexOf(element);
+        if(index === i){
+            strike += 1;
+        }else{
+            ball += 1;
+        }
+    });
+    
+    //map
+    const array = [1,2,3,4];
+    const result = [];
+    array.map((element, i)=>{
+        result.push(element*2);
+    });
+    
+   let bin = Array(9).fill(0);
+
+   let mapH = Array(9).fill(0).map((el,idx)=>{
+    return idx +1;
+   });
+        
+</script>
+</html>
