@@ -11,7 +11,7 @@
         arr = ['apple','orange, ','grape','banna','kiwi'];
         arr.slice().sort((a,b)=>a[0].charCodeAt() - b[0].charCodeAt());
         arr.slice().sort((a,b)=>b[0].charCodeAt() - a[0].charCodeAt());
-        arr.slice().sort((a,b)=>a.localeCompare(b));
+        arr.slice().sort((a,b)=>a.localeCompare(b)); //완벽한 사전순으로 정리
         array = [3,2,6,7,8,9,1,4,5];
         array.slice().sort((a,b)=>{
             console.log(a,b,a-b);
