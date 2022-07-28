@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        arr = ['apple','orange, ','grape','banna','kiwi'];
+        arr.slice().sort((a,b)=>a[0].charCodeAt() - b[0].charCodeAt());
+        arr.slice().sort((a,b)=>b[0].charCodeAt() - a[0].charCodeAt());
+        arr.slice().sort((a,b)=>a.localeCompare(b));
+        array = [3,2,6,7,8,9,1,4,5];
+        array.slice().sort((a,b)=>{
+            console.log(a,b,a-b);
+            return a-b;
+        });
+    </script>
+</body>
+</html>
