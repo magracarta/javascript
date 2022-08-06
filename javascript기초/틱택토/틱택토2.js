@@ -95,7 +95,7 @@ const callback = (e)=>{
     };
     //무승부 검사 flat() 은 2차원 배열을 1차원으로 바꿔주는 메서드
     let draw = rows.flat().every((td)=>td.textContent); //모두가 차이었야 true
-    // let draw = rows.some().every((td)=>td.textContent); 하나라도 차있으면 true
+    // let draw = rows.flat().some((td)=>td.textContent); 하나라도 차있으면 true
 
     if (draw){
         $result.textContent = `무승부`;
