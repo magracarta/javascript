@@ -75,6 +75,7 @@ const checkWinner = (target) => {
     turn = turn === 'O' ? 'X' :'O';
   }
 let clickkable = true;
+
 const callback = (e)=>{
     if(!clickkable) return;
     // e.stopPropagation(); 버블링 만들기
@@ -97,7 +98,7 @@ const callback = (e)=>{
             randomCell.textContent = 'X';
             checkWinnerAndDraw(e.target);
             clickkable = true;
-        },500);    
+        },1000);    
     }
 }
 
