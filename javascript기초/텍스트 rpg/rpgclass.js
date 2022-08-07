@@ -14,25 +14,81 @@ const $message = document.querySelector('#message');
 class Game {
     constructor(name){
         this.monster = null;
-        this.hero = new Hero(this, name);
+        this.hero = null;
         this.monsterList = [
             {name : '슬라임', hp : 25, att:10 , xp:10},
             {name : '스켈레톤', hp : 50, att:15 , xp:20},
             {name : '마왕', hp : 150, att:35 , xp:50},
         ];
-        this.start();
+        this.start(name);
     }
-    start(){
+    start(name){
+        console.log
         $gameMenu.addEventListener('submit', this.onGameMenuInput);
         $battleMenu.addEventListener('submit', this.onBattleMenuInput);
         this.changeScreen('game');
+        this.hero= new Hero(this, name);
+        this.updateHeroStat();
     }
     changeScreen(screen){
         if(screen === 'start'){
+            $startScreen.style.display='block';
+            $gameMenu.style.display='none';
+            $battleMenu.style.display='none';
+        } else if(screen === 'game'){
+            $startScreen.style.display='none';
+            $gameMenu.style.display='block';
+            $battleMenu.style.display='none';
+        }else if(screen === 'battle'){
+            $startScreen.style.display='none';
+            $gameMenu.style.display='none';
+            $battleMenu.style.display='block';
+        }
+    }
+    //화살표 함수면 this가 밖의 this와 같다. function 함수는 다르다.
+    onGameMenuInput =(event)=>{
+        event.preventDefault();
+        const input = event.target['menu-input'].value;
+        if(input ==='1'){//모험
+            this.changeScreen('battle');
+        }else if(input ==='2'){//휴식
+
+        }else if(input ==='3'){//종료
             
         }
     }
+    onBattleMenuInput =(event)=>{
+        event.preventDefault();
+        const input = event.target['battle-input'].value;
+        if(input ==='1'){//공격
+
+        }else if(input ==='2'){//회복
+
+        }else if(input ==='3'){//도망
+            this.changeScreen('game');
+        }
+    }
+
+    updateHeroStat(){
+        const { hero } = this;
+        if(hero === null){
+            $heroName.textContent = '';
+            $heroName.textContent = '';
+            $heroHp.textContent = '';
+            $heroXp.textContent = '';
+            $heroAtt.textContent = '';
+            return;
+        }
+        $heroName.textContent = `${hero.name}`;
+        $heroLevel.textContent = `${hero.lev}lev`;
+        $heroHp.textContent = `HP : ${hero.hp}`;
+        $heroXp.textContent = `XP : ${hero.xp}`;
+        $heroAtt.textContent = `ATT : ${hero.att}`;
+    }
 }
+
+
+
 
 class Hero{
     constructor(game, name){
@@ -65,11 +121,6 @@ class Monster {
         target.hp -= this.att;
     }
 }
-
-
-
-
-
 let game = null;
 $startScreen.addEventListener('submit',(event)=>{
     event.preventDefault();
