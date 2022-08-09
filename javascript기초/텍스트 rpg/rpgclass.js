@@ -31,6 +31,7 @@ class Game {
         this.updateHeroStat();
     }
     changeScreen(screen){
+        console.log(this);
         if(screen === 'start'){
             $startScreen.style.display='block';
             $gameMenu.style.display='none';
@@ -51,6 +52,17 @@ class Game {
         const input = event.target['menu-input'].value;
         if(input ==='1'){//모험
             this.changeScreen('battle');
+            const randomIndex = Math.floor(Math.random()*this.monsterList.length);
+            const randomMonster = this.monsterList[randomIndex];
+            this.monster = new Monster(
+                this,
+                randomMonster.name,
+                randomMonster.hp,
+                randomMonster.att,
+                randomMonster.xp,
+            );
+            this.updateMonsterStat();
+            this.showMessage(`몬스터와 마주쳤다. ${this.monster.name}인 것같다.`);
         }else if(input ==='2'){//휴식
 
         }else if(input ==='3'){//종료
@@ -61,7 +73,12 @@ class Game {
         event.preventDefault();
         const input = event.target['battle-input'].value;
         if(input ==='1'){//공격
-
+            const {hero, monster} = this;
+            hero.attack(monster);
+            monster.attack(hero);
+            this.showMessage(`${hero.att}의 데미지를 주고, ${monster.att}의 데미지를 받았다.`);
+            this.updateHeroStat();
+            this.updateMonsterStat();
         }else if(input ==='2'){//회복
 
         }else if(input ==='3'){//도망
@@ -84,6 +101,20 @@ class Game {
         $heroHp.textContent = `HP : ${hero.hp}`;
         $heroXp.textContent = `XP : ${hero.xp}`;
         $heroAtt.textContent = `ATT : ${hero.att}`;
+    }
+    updateMonsterStat(){
+        const { monster } = this;
+        if( monster === null ){
+            $monsterName.textContent = '';
+            $monsterHp.textContent = '';
+            $monsterAtt.textContent = '';
+        }
+        $monsterName.textContent = monster.name;
+            $monsterHp.textContent = `HP : ${monster.hp} / ${monster.maxHp}`;
+            $monsterAtt.textContent = `ATT ${monster.att}`;
+    }
+    showMessage(text){
+        $message.textContent = text;
     }
 }
 
