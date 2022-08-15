@@ -4,3 +4,7 @@
 //대기
 
 const $wrapper = document.querySelector('#wrapper');
+const total = 12;
+const colors = ['red','orange','yellow','green','white','pink'];
+let colorCopy = colors.concat(colors);
+let shuffled = [];
