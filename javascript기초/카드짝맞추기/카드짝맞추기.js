@@ -10,6 +10,7 @@ let colorCopy = colors.concat(colors);
 let shuffled = [];
 let clicked = [];
 let completed = [];
+let clickable = false;
 
 function shuffle(){//피셔-예이츠 셔플
     for(let i =0; colorCopy.length > 0; i+=1){
@@ -37,6 +38,9 @@ function createCard(i){
 }
 
 function onClickCard(){
+    if(!clickable || completed.includes(this) || clicked[0] === this ){
+        return;
+    }
     //클릭 -> 카드를 뒤집고 클릭한 카드 배열에 추가
     //2장이 되엇나?  -> 두카드의 뒷변이 똑같은가 - > 완료카드로 배열에 넣음
     this.classList.add('flipped');
@@ -54,7 +58,10 @@ function onClickCard(){
         if(completed.length !== total){
             return;
         }
-        alert('축하합니다.');
+        setTimeout(()=>{
+            alert('축하합니다.');
+            resetGame();
+        },1000);
         return;
     }
     setTimeout(()=>{
@@ -66,6 +73,7 @@ function onClickCard(){
 }
 
 function startGame(){
+    clickable = false;
     shuffle();
     for(let i = 0; i<total; i+=1){
         const card = createCard(i);
@@ -83,6 +91,16 @@ function startGame(){
             card.classList.remove('flipped');
         });
     },5000);
+    clickable=true;
 }
 
 startGame();
+
+function resetGame(){
+    $wrapper.innerHTML = '';
+    //원본을 안바꾸는 애들 -> concat
+    colorCopy = colors.concat(colors);
+    shuffled = [];
+    completed = [];
+    startGame();
+}
