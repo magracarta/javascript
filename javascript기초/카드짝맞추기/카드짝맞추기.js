@@ -4,14 +4,15 @@
 //대기
 
 const $wrapper = document.querySelector('#wrapper');
-const total = 12;
-const colors = ['red','orange','yellow','green','white','pink'];
-let colorCopy = colors.concat(colors);
+const total = parseInt(prompt('카드 개수를 짝수로 입력하세요(최대 20).'));
+const colors = ['red','orange','yellow','green','white','pink','cyan','violet','gray','black'];
+let colorSlice = colors.slice(0, total/2);
+let colorCopy = colorSlice.concat(colorSlice);
 let shuffled = [];
 let clicked = [];
 let completed = [];
 let clickable = false;
-
+let startTime;
 function shuffle(){//피셔-예이츠 셔플
     for(let i =0; colorCopy.length > 0; i+=1){
         const randomIndex = Math.floor(Math.random()*colorCopy.length);
@@ -37,6 +38,8 @@ function createCard(i){
     return card;
 }
 
+//테스크 류 : 8번 9번 
+//백 :  addEventListener(12), setTimeout500, setTimeout 500
 function onClickCard(){
     if(!clickable || completed.includes(this) || clicked[0] === this ){
         return;
@@ -51,6 +54,7 @@ function onClickCard(){
     const firstBackColor = clicked[0].querySelector('.card-back').style.backgroundColor;
     const secondBackColor = clicked[1].querySelector('.card-back').style.backgroundColor;
     if(firstBackColor===secondBackColor){
+        let endTime = new Date();
         // completed.push(clicked[0]);
         // completed.push(clicked[1]);
         completed = completed.concat(clicked);
@@ -59,15 +63,17 @@ function onClickCard(){
             return;
         }
         setTimeout(()=>{
-            alert('축하합니다.');
+            alert(`축하합니다. ${endTime - startTime /1000} 초 걸렸습니다.`);
             resetGame();
         },1000);
         return;
     }
+    clickable=false;
     setTimeout(()=>{
         clicked[0].classList.remove('flipped');
         clicked[1].classList.remove('flipped');
         clicked=[];
+        clickable=true;
     },500);
    
 }
@@ -90,8 +96,10 @@ function startGame(){
         document.querySelectorAll('.card').forEach((card,index)=>{
             card.classList.remove('flipped');
         });
+        clickable=true;
     },5000);
-    clickable=true;
+    
+    startTime = new Date();
 }
 
 startGame();
@@ -99,8 +107,42 @@ startGame();
 function resetGame(){
     $wrapper.innerHTML = '';
     //원본을 안바꾸는 애들 -> concat
-    colorCopy = colors.concat(colors);
+    colorCopy = colorSlice.concat(colorSlice);
     shuffled = [];
     completed = [];
     startGame();
 }
+
+//console.trace();
+
+/*
+    function a(){
+        b();
+    }
+    function b(){
+        console.trace();
+    }
+    a();
+    b->a->anonymous
+
+
+    function aaa(){
+        setTimeout(()=>{
+            console.log('d');
+        },0);
+        console.log('c');
+    }
+    setTimeout(()=>{
+        console.log('a');
+        aaa();
+    },0);
+    setTimeout(()=>{
+        aaa();
+        console.log('b');
+    },0);
+
+    //호출스택 : anomyous -> 
+    //백그라운드 : 타이머 1-0초, 타이머 2-0초
+    //태스크큐 :
+    //콘솔 : a, c , c, b ,d ,d
+    */
