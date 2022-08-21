@@ -63,7 +63,7 @@ function onClickCard(){
             return;
         }
         setTimeout(()=>{
-            alert(`축하합니다. ${endTime - startTime /1000} 초 걸렸습니다.`);
+            alert(`축하합니다. ${Math.floor((endTime - startTime)/1000)} 초 걸렸습니다.`);
             resetGame();
         },1000);
         return;
@@ -97,9 +97,10 @@ function startGame(){
             card.classList.remove('flipped');
         });
         clickable=true;
+        startTime = new Date();
     },5000);
     
-    startTime = new Date();
+    
 }
 
 startGame();
