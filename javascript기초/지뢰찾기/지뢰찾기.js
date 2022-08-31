@@ -5,7 +5,7 @@ const $result = document.querySelector('#result');
 
 const row =10;//줄
 const cell = 10; // 칸
-const mine = 10;
+const mine = 10;//지뢰 10개
 const CODE = {
     NORMAL : -1, // 닫힌칸
     QUESTION : -2,
@@ -16,7 +16,7 @@ const CODE = {
     OPENED:0,//0이상이면 다 모두 열린칸
 }
 let data;
-
+// 지뢰심기
 function plantMine(){
     const candidata = Array(row*cell).fill().map((arr,i)=>{
         return i;
@@ -38,13 +38,15 @@ function plantMine(){
     
     for(let k=0; k < shuffle.length; k++){
         const ver = Math.floor(shuffle[k]/cell);
+        
         const hor = shuffle[k]%cell;
+        
         data[ver][hor] = CODE.MINE;
     }
     console.log(shuffle);
     return data;
 }
-
+// 테이블설정
 function drawTable(){
     data = plantMine();
     data.forEach((row)=>{
