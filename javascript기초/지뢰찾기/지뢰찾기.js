@@ -1,11 +1,12 @@
 //처음 테이블을 생성하는 절차와 칸을 좌클리하는 절차, 우클릭하는 절차
+const $form = document.querySelector('#form');
 const $tbody = document.querySelector('#table tbody');
 const $result = document.querySelector('#result');
+const $timer = document.querySelector('#timer');
 
-
-const row =10;//줄
-const cell = 10; // 칸
-const mine = 10;//지뢰 10개
+let row;//줄
+let cell; // 칸
+let mine;//지뢰 10개
 const CODE = {
     NORMAL : -1, // 닫힌칸
     QUESTION : -2,
@@ -16,6 +17,28 @@ const CODE = {
     OPENED:0,//0이상이면 다 모두 열린칸
 }
 let data;
+let openCount;
+let startTime;
+let interval;
+const dev = true;
+
+$form.addEventListener('submit', onsubmit);
+function onsubmit(event){
+    event.preventDefault();
+    row = parseInt(event.target.row.value);
+    cell = parseInt(event.target.cell.value);
+    mine = parseInt(event.target.mine.value);
+    openCount = 0;
+    clearInterval(interval);
+    $tbody.innerHTML = ``;
+    drawTable();
+    startTime = new Date;
+    interval = setInterval(()=>{
+        const time = Math.floor((new Date()-startTime)/1000);
+        $timer.textContent = `${time}초`;
+    },1000);
+}
+
 // 지뢰심기
 function plantMine(){
     const candidata = Array(row*cell).fill().map((arr,i)=>{
@@ -38,9 +61,7 @@ function plantMine(){
     
     for(let k=0; k < shuffle.length; k++){
         const ver = Math.floor(shuffle[k]/cell);
-        
         const hor = shuffle[k]%cell;
-        
         data[ver][hor] = CODE.MINE;
     }
     console.log(shuffle);
@@ -65,7 +86,7 @@ function onRightClick(event){
     }else if (cellData === CODE.FLAG_MINE){//깃발 지뢰면
         data[rowIndex][cellIndex] = CODE.MINE;//지뢰로
         target.className='';
-        target.textContent = 'X';
+        target.textContent = '';
     }else if (cellData === CODE.NORMAL){//깃발이면
         data[rowIndex][cellIndex] = CODE.QUESTION;//닫힌칸으로
         target.className='question';
@@ -84,7 +105,7 @@ function countMine(rowIndex, cellIndex){
  const mines = [CODE.MINE, CODE.QUESTION_MINE, CODE.FLAG_MINE];
  let i = 0;
  //?. 은 세트 보호 연산 ex if(data[-1]){~~}
- //앞에게 존재하면 실행해라
+ //앞에게 존재하면 실행해라 옵셔널 체이닝 undefined 를 걸러내는 코드
  mines.includes(data[rowIndex-1]?.[cellIndex-1])&& i++;
  mines.includes(data[rowIndex-1]?.[cellIndex])&& i++;
  mines.includes(data[rowIndex-1]?.[cellIndex+1])&& i++;
@@ -96,6 +117,58 @@ function countMine(rowIndex, cellIndex){
  mines.includes(data[rowIndex+1]?.[cellIndex+1])&& i++;
  return i;
 }
+function open(rowIndex, cellIndex){
+    if(data[rowIndex]?.[cellIndex] >= CODE.OPENED)return; //이미 열린 칸은 계산하지 않는다.
+    const target = $tbody.children[rowIndex]?.children[cellIndex];
+    if(!target){
+        return;
+    }
+    const count = countMine(rowIndex, cellIndex);
+    target.textContent = count || '';
+    target.className='opened';
+    data[rowIndex][cellIndex] = count;
+    openCount++;
+    console.log(openCount);
+    if(openCount === row*cell - mine){
+        const time = Math.floor((new Date() - startTime)/1000);
+        clearInterval(interval);
+        $tbody.removeEventListener('contextmenu',onRightClick);
+        $tbody.removeEventListener('click',onLeftClick);
+        setTimeout(()=>{
+            $result.textContent=(`승리했습니다. ${time}초가 걸렸습니다.`);
+        },100);
+    }
+    return count;
+}
+//재귀함수 maximum call stack size 해결 방법
+function openedAround(rI,cI){
+    setTimeout(()=>{
+        const count = open(rI,cI);
+        //console.log(count);
+        if(count === 0){
+            openedAround(rI-1, cI -1);
+            openedAround(rI-1, cI);
+            openedAround(rI-1, cI+1);
+            openedAround(rI, cI-1);
+            openedAround(rI, cI);
+            openedAround(rI, cI+1);
+            openedAround(rI+1, cI-1);
+            openedAround(rI+1, cI);
+            openedAround(rI+1, cI+1);
+        }
+    },0);
+}
+
+let normalCellFound = false;
+let searched;
+let firstClick = true;
+function transferMine(rI,cI){
+    if(normalCellFound)return;//이미 빈칸을 찾았으면 종료
+    if(rI<0||rI>=row||cI<0||cI>=cell)return;
+    if(searched[rI]?.[cI])return; //이미 찾은 칸이면 종료
+    if(isNormal){}
+}
+
 function onLeftClick(event){
     event.preventDefault();
     const target = event.target;
@@ -103,14 +176,16 @@ function onLeftClick(event){
     const cellIndex = target.cellIndex;
     const cellData = data[rowIndex][cellIndex];
     if(cellData === CODE.NORMAL){//닫힌칸이면
-        const count = countMine(rowIndex, cellIndex);
-        //앞에게 ture 면 앞에거만 진행 앞에게 false면 뒤에거를 진행해라 
-        target.textContent = count || '';
-        target.className = 'opened';
-        data[rowIndex][cellIndex] = count;
+        // const count = countMine(rowIndex, cellIndex);
+        // //앞에게 ture 면 앞에거만 진행 앞에게 false면 뒤에거를 진행해라 
+        // target.textContent = count || '';
+        // target.className = 'opened';
+        // data[rowIndex][cellIndex] = count;
+        openedAround(rowIndex,cellIndex);
     }else if(cellData===CODE.MINE){//지뢰칸이면
         target.textContent = '펑';
         target.className = 'opened';
+        clearInterval(interval);
         $tbody.removeEventListener('contextmenu',onRightClick);
         $tbody.removeEventListener('click',onLeftClick);
     }//나머지는 무시
@@ -124,7 +199,7 @@ function drawTable(){
         row.forEach((cell)=>{
             const $td = document.createElement('td');
             if(cell===CODE.MINE){
-                $td.textContent = 'X';//개발 편의 를 위해
+               //$td.textContent = 'X';//개발 편의 를 위해
             }
             $tr.append($td);
         });
@@ -133,4 +208,3 @@ function drawTable(){
         $tbody.addEventListener('click',onLeftClick);
     })
 };
-drawTable();
