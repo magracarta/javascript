@@ -158,7 +158,7 @@ function openedAround(rI,cI){
         }
     },0);
 }
-
+//------------------------------- 여기까지~
 let normalCellFound = false;
 let searched;
 let firstClick = true;
