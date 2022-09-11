@@ -29,6 +29,7 @@ function onsubmit(event){
     cell = parseInt(event.target.cell.value);
     mine = parseInt(event.target.mine.value);
     openCount = 0;
+    firstClick = true;
     clearInterval(interval);
     $tbody.innerHTML = ``;
     drawTable();
@@ -165,8 +166,31 @@ let firstClick = true;
 function transferMine(rI,cI){
     if(normalCellFound)return;//이미 빈칸을 찾았으면 종료
     if(rI<0||rI>=row||cI<0||cI>=cell)return;
-    if(searched[rI]?.[cI])return; //이미 찾은 칸이면 종료
-    if(isNormal){}
+    if(searched[rI][cI])return; //이미 찾은 칸이면 종료
+    if(data[rI]?.[cI] === CODE.NORMAL){ //빈칸인 경우
+        normalCellFound = true;
+        data[rI][cI] = CODE.MINE;
+    }else{//지뢰 칸인 경우 8방향 탐색
+        searched[rI][cI] = true;
+        transferMine(rI-1, cI-1);
+        transferMine(rI-1, cI);
+        transferMine(rI-1, cI+1);
+        transferMine(rI, cI-1);
+        transferMine(rI, cI+1);
+        transferMine(rI+1, cI-1);
+        transferMine(rI+1, cI);
+        transferMine(rI+1, cI+1);
+    }
+}
+function showMines(){
+    const mines = [CODE.MINE, CODE.QUESTION_MINE, CODE.FLAG_MINE];
+    data.forEach((row, rowIndex)=>{
+        row.forEach((cell, cellIndex)=>{
+            if(mines.includes(cell)){
+                $tbody.children[rowIndex].children[cellIndex].textContent = 'X';
+            }
+        });
+    });
 }
 
 function onLeftClick(event){
@@ -174,7 +198,16 @@ function onLeftClick(event){
     const target = event.target;
     const rowIndex = target.parentNode.rowIndex;
     const cellIndex = target.cellIndex;
-    const cellData = data[rowIndex][cellIndex];
+    let cellData = data[rowIndex][cellIndex];
+    if(firstClick){
+        firstClick = false;
+        searched = Array(row).fill().map(()=>[]);
+        if(cellData === CODE.MINE){//첫클릭이 지뢰면
+            transferMine(rowIndex, cellIndex);//지뢰 옮기기
+            data[rowIndex][cellIndex]=CODE.NORMAL;//지금칸을 빈칸으로
+            cellData = CODE.NORMAL;
+        }
+    }
     if(cellData === CODE.NORMAL){//닫힌칸이면
         // const count = countMine(rowIndex, cellIndex);
         // //앞에게 ture 면 앞에거만 진행 앞에게 false면 뒤에거를 진행해라 
@@ -183,6 +216,7 @@ function onLeftClick(event){
         // data[rowIndex][cellIndex] = count;
         openedAround(rowIndex,cellIndex);
     }else if(cellData===CODE.MINE){//지뢰칸이면
+        showMines();
         target.textContent = '펑';
         target.className = 'opened';
         clearInterval(interval);
