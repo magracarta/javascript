@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디데이 카운트 다운</title>
+</head>
+<body>
+    <style>
+        * { padding: 0; margin: 0;  font-family: 'Noto Sans KR','Nanum Gothic','나눔고딕','dotum',sans-serif; }
+        .timerTitle { font-size:30px; text-align: center; padding: 20px; }
+        .timerWrap { text-align: center; }
+        /* 디데이 카운트다운 css */
+        .timerWrap { width: 300px;  padding: 50px; background: #f7f7f7; display: block; margin: 50px auto; }
+        .timerWrap .timerBox {  }
+        .timerWrap .timerBox .settingTime {  display: none; }
+        .timerWrap .timerBox .countNumberWrap {  }
+        .timerWrap .timerBox .countNumberWrap > span { font-size: 20px; }
+    </style>
+    <!-- 타이머 hTMl -->
+    <div class="timerTitle">타이머</div>
+    <!-- 아래 타이머에서 변경해야하는부분은 settingTime와 이미지 변경입니다. -->
+    <!-- timerWrap 태그 전체를 복사해서 사용해주세용 -->
+    <div class="timerWrap">
+        <div class="timerBox hcmj" style="text-align: center;"> 
+            <!-- settingTime의 날짜를 바꿔주세요 -->
+            <div class="settingTime">October 18, 2022, 00:00:00</div>
+            <div class="countNumberWrap"> 
+                <span class="d-day-day">
+                </span> 
+                <span class="d-day-hour">
+                </span> 
+                <span class="d-day-min">
+                </span> 
+                <span class="d-day-sec">
+                </span> 
+            </div> 
+        </div>
+    </div>
+    <!-- timerWrap 태그 전체를 복사해서 사용해주세용 -->
+
+    <div class="timerWrap">
+        <div class="timerBox hcmj" style="text-align: center;"> 
+            <!-- settingTime의 날짜를 바꿔주세요 -->
+            <div class="settingTime">October 13, 2022, 00:00:00</div>
+            <div class="countNumberWrap"> 
+                <span class="d-day-day">
+                </span> 
+                <span class="d-day-hour">
+                </span> 
+                <span class="d-day-min">
+                </span> 
+                <span class="d-day-sec">
+                </span> 
+            </div> 
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+// 타이머 여러개 사용 가능    
+// 타이머 배열로 처리했으므로 스크립트는 따로 건드리시지 않아도 됩니다. (그대로 사용 가능)
+// 원하는 영역에 날짜 HTML코드로 삽입해주시면, 자동으로 카운트 다운 작동합니다.
+// 타이머 스크립트 ㅎㅇㅌ!
+let timeDiv = document.querySelectorAll('.timerBox .settingTime');
+let timeArray=[];
+
+timeDiv.forEach((elem, i)=>{
+    setInterval(() => {
+        const nowTime = new Date().getTime();
+        const endTime = new Date(elem.innerText).getTime();
+        const diff = endTime - nowTime;
+
+        let diffDay = Math.floor(diff / (1000*60*60*24)); //day
+        let diffHour = Math.floor((diff / (1000*60*60)) % 24); //100이하 hour
+        let nodayHour = Math.floor((diff / (1000*60*60))); //hour
+        let diffMin = Math.floor((diff / (1000*60)) % 60); //minutes
+        let diffSec = Math.floor(diff / 1000 % 60); //seconds
+
+        //각 시간 영역이 10이하 될때
+        if(nodayHour < 10 && nodayHour > 0 ){ nodayHour = '0'+nodayHour;}
+        if(diffHour < 10  && diffHour > 0 ){ diffHour = '0'+diffHour; }
+        if(diffMin < 10   && diffMin > 0 ){ diffMin = '0'+diffMin; }
+        if(diffSec < 10   && diffSec > 0 ){ diffSec = '0'+diffSec; }
+
+
+        if(nodayHour<=0){ nodayHour = '00';}
+        if(diffHour<=0){ diffHour = '00'; }
+        if(diffMin<=0){ diffMin = '00'; }
+        if(diffSec<=0){ diffSec = '00'; }
+
+        //100시간 이상일때 날짜 등장
+        if(nodayHour>=100){
+            document.querySelectorAll('.d-day-day')[i].innerText = diffDay +'일';
+            document.querySelectorAll('.d-day-hour')[i].innerText = diffHour +'시';
+            document.querySelectorAll('.d-day-min')[i].innerText = diffMin +'분';
+            document.querySelectorAll('.d-day-sec')[i].innerText = diffSec +'초';
+        }else{
+            document.querySelectorAll('.d-day-hour')[i].innerText = nodayHour +'시';
+            document.querySelectorAll('.d-day-min')[i].innerText = diffMin +'분';
+            document.querySelectorAll('.d-day-sec')[i].innerText = diffSec +'초';
+        }
+    }, 1000);
+
+});
+
+</script>
