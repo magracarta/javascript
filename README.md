@@ -8,6 +8,7 @@
 <br><br>
 > ## LIVE PAGE 🥰 <br>
 >   [끝말잇기](https://magracarta.github.io/javascript/javascript%EA%B8%B0%EC%B4%88/%EB%81%9D%EB%A7%90%EC%9E%87%EA%B8%B0/index.html)
+>   [metagame](https://magracarta.github.io/javascript/project/metagame/index.html)
 
 
 <br><br>
