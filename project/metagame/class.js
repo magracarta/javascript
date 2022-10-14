@@ -11,6 +11,16 @@ class Character{
         
     }
     keyMotion(){
+        if((key.keyDown['left']&&key.keyDown['up'])
+            ||(key.keyDown['left']&&key.keyDown['down'])
+            ||(key.keyDown['right']&&key.keyDown['up'])
+            ||(key.keyDown['right']&&key.keyDown['down'])
+        ){
+            this.speed = 2.2;
+        }else{
+            this.speed = 3;
+        }
+
        if(key.keyDown['left']){
         this.direction = 'left';
         this.el.classList.add('walkLeft');
@@ -47,12 +57,10 @@ class Character{
         if(this.movey <= this.roomHeight-(this.size().height + 10)){
             this.movey +=this.speed;
         };
-        
        }else{
         this.direction = 'default';
         this.el.classList.remove('walkdown');
        }
-       
        
        this.el.style.left = this.movex+'px';
        this.el.style.top = this.movey+'px';
