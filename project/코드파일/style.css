@@ -1,0 +1,39 @@
+* { margin: 0; padding: 0;  }
+body {  background: #333; height: 100%; }
+img { display: block; vertical-align:top; }
+#gameContent { height:100vh; width: 100%; display: flex; overflow: hidden; }
+.game_container { position: relative; background-image: url('gameBackground.png'); background-size: cover; width: 465px; height: 834px;margin: auto; }
+
+@keyframes cha-default {
+ from {
+    background-position: 0 0;
+ }
+ to {
+    background-position: 280px 0;
+ }
+}
+@keyframes cha-shadow {
+ from {
+    background-position: 0 0;
+ }
+ to {
+    background-position: 88.8px 0;
+ }
+}
+@keyframes cha-left {
+ from {
+    background-position: 0 0;
+ }
+ to {
+    background-position: 224px 0;
+ }
+}
+
+.character-wrap { position: absolute; left: 50%; bottom: 50%;}
+.character { position: relative; z-index: 2;  width: 56px; height: 120px; background-image: url('character.png'); background-size: 280px 120px; background-position: 0; animation: cha-default infinite 1s steps(5);}
+.character-wrap::before { content: ''; display: block; position: absolute;bottom: 4%; left:24%; width: 29.6px; height: 13.6px; background-image: url('./shadow.png'); background-size: 88.8px 13.6px;  animation: cha-shadow infinite 0.8s steps(3); }
+
+.character-wrap.walkLeft   .character{ background-image: url('char-walk-left.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
+.character-wrap.walkright  .character { background-image: url('char-walk-right.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
+.character-wrap.walktop    .character{ background-image: url('char-walk-top.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
+.character-wrap.walkdown   .character{ background-image: url('char-walk-down.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
