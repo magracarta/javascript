@@ -31,7 +31,7 @@ const rendGame = ()=>{
 
 //이미지 미리로드
 const imgLoad =()=>{
-    const preLoadImgSrc = ['char-walk-left.png','char-walk-right.png','char-walk-top.png','char-walk-down.png'];
+    const preLoadImgSrc = ['./img/char-walk-left.png','./img/char-walk-right.png','./img/char-walk-top.png','./img/char-walk-down.png'];
     preLoadImgSrc.forEach((arr)=>{
         const img = new Image();
         img.src=arr;
