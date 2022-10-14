@@ -29,7 +29,7 @@ img { display: block;  }
  }
 }
 
-.character-wrap { position: absolute; }
+.character-wrap { position: absolute; left: 50%; top: 50%; }
 .character { position: relative; z-index: 2;  width: 56px; height: 120px; background-image: url('./img/character.png'); background-size: 280px 120px; background-position: 0; animation: cha-default infinite 1s steps(5);}
 .character-wrap::before { content: ''; display: block; position: absolute;bottom: 4%; left:24%; width: 29.6px; height: 13.6px; background-image: url('./img/shadow.png'); background-size: 88.8px 13.6px;  animation: cha-shadow infinite 0.8s steps(3); }
 
