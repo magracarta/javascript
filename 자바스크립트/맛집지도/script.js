@@ -66,27 +66,33 @@ https://apis.map.kakao.com/web/sample/addr2coord/ (주소로 장소 표시하기
 
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
-for (var i = 0; i < dataSet.length; i ++) {
-	// 마커를 생성합니다
-	var marker = new kakao.maps.Marker({
-		map: map, // 마커를 표시할 지도
-		position: coords, // 마커를 표시할 위치
-	});
+async function setMap(){
+	for (var i = 0; i < dataSet.length; i ++) {
+		// 마커를 생성합니다
+		let coords = await getCoordByAddress(dataSet[i].address);
+		var marker = new kakao.maps.Marker({
+			map: map, // 마커를 표시할 지도
+			position: coords, // 마커를 표시할 위치
+		});
+	}
 }
+
+
 
 
 //주소 좌표 변환 함수
 function getCoordByAddress(address){
 	return new Promise((resolve, reject)=>{
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+		geocoder.addressSearch(address, function(result, status) {
 			// 정상적으로 검색이 완료됐으면 
 			if (status === kakao.maps.services.Status.OK) {
 				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 				resolve(coords);
 				return;
 			} 
-			reject(new Error("getCoordsByAdrexx Error: noevalid Address"))
+			reject(new Error("getCoordsByAdrexx Error: not valid Address"))
 		}); 
 	});
 }
+setMap();
