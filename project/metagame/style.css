@@ -29,11 +29,32 @@ img { display: block;  }
  }
 }
 
-.character-wrap { position: absolute; left: 50%; top: 50%; }
-.character { position: relative; z-index: 2;  width: 56px; height: 120px; background-image: url('./img/character.png'); background-size: 280px 120px; background-position: 0; animation: cha-default infinite 1s steps(5);}
+.character-wrap { position: absolute; left: 50%; top: 50%; background:#c9c;}
+.character {  position: relative; z-index: 2;  width: 56px; height: 120px; background-image: url('./img/character.png'); background-size: 280px 120px; background-position: 0; animation: cha-default infinite 1s steps(5);}
 .character-wrap::before { content: ''; display: block; position: absolute;bottom: 4%; left:24%; width: 29.6px; height: 13.6px; background-image: url('./img/shadow.png'); background-size: 88.8px 13.6px;  animation: cha-shadow infinite 0.8s steps(3); }
 
 .character-wrap.walktop    .character{ background-image: url('./img/char-walk-top.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
 .character-wrap.walkdown   .character{ background-image: url('./img/char-walk-down.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
 .character-wrap.walkLeft   .character{ background-image: url('./img/char-walk-left.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
 .character-wrap.walkright  .character { background-image: url('./img/char-walk-right.png'); background-size: 224px 120px; background-position: 0; animation: cha-left infinite 0.6s steps(4);}
+
+
+.acadeNail { position: absolute; top: 60px;left: 350px; }
+.acadeNail-Section { position: absolute; left: 350px;  top: 245px; width:70px; height: 20px;  }
+
+.blueleoNail { position: absolute; top: 60px;left: 50px; }
+.blueleoNail-Section { position: absolute; left: 50px; top: 245px; width:70px; height: 20px;   }
+
+.indegoFlow { position: absolute; top: 350px; left: 12px; }
+.morderBlackNail { position: absolute; top: 450px; left: 12px; }
+.roseNail { position: absolute; top: 550px; left: 12px; }
+
+.indegoFlow-section { position: absolute; top: 350px; left: 12px; width:69px; height: 99px;  }
+.morderBlackNail-section { position: absolute; top: 450px; left: 12px; width:69px; height: 99px;   }
+.roseNail-section { position: absolute; top: 550px; left: 12px; width:69px; height: 120px;  }
+
+.minji { position: absolute; top: 300px; left: 380px; }
+.helin { position: absolute; top: 440px; left: 350px; }
+.dainel { position: absolute; top: 600px; left: 380px; }
+
+.sectioncolor {background: rgba(142, 252, 138, 0.8);   }

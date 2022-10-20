@@ -25,7 +25,7 @@ const windowEvent = ()=>{
 
 const rendGame = ()=>{
     character.keyMotion();
-
+    
     requestAnimationFrame(rendGame);
 }
 
@@ -39,9 +39,17 @@ const imgLoad =()=>{
 }
 
 let character;
+let nailObjectArray =[];
+let nailObject = document.querySelectorAll('.object');
 const init=()=>{
     character = new Character('.character-wrap');
+    nailObject.forEach((el, i)=>{
+        const nailObject =  new NailObject(el);
+        nailObjectArray.push(nailObject);
+        nailObjectArray[i].sectionCrush();
+    })
     imgLoad();
+    character.directionFn();
 }
 
 window.onload=()=>{
