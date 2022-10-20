@@ -116,46 +116,63 @@ class NailObject{
         this.offsetLeft = this.el.offsetLeft;
         this.width = this.el.offsetWidth;
         this.height = this.el.offsetHeight;
-        this.crush = false;
-        this.crushX;
-        this.crushY;
-        this.cnt = 20;
+        this.popup = false;
     }
     sectionInOut(i){
         // console.log(character.direction);
         if(
             character.position().right > this.offsetLeft 
             && character.position().left < this.offsetLeft + this.width 
-            &&(character.position().middle  > this.offsetTop 
-            &&character.position().middle < (this.offsetTop+ this.height))
+            &&(character.position().bottom  > this.offsetTop 
+            &&character.position().middle+25 < (this.offsetTop+ this.height))
         ){
-            if(character.position().left > this.offsetLeft && character.position().right > this.offsetLeft){
+            if(character.position().left > this.offsetLeft 
+            && character.position().right > this.offsetLeft
+            &&character.position().bottom  > this.offsetTop+5 
+            &&character.position().top < (this.offsetTop+ this.height)-5
+            ){
                 character.left[i].sum =  5;
             }else{
                 character.left[i].sum =  0;
             }
-            if(character.position().right > this.offsetLeft && character.position().left < this.offsetLeft){
+            if(character.position().right > this.offsetLeft 
+            && character.position().left < this.offsetLeft
+            &&character.position().bottom  > this.offsetTop+5 
+            &&character.position().top < (this.offsetTop+ this.height)-5
+            ){
                 character.right[i].sum =  5;
             }else{
                 character.right[i].sum =  0;
             }
-            if(character.position().middle > this.offsetTop && character.position().bottom > this.offsetTop+this.height){
+            if(character.position().middle > this.offsetTop 
+            && character.position().bottom > this.offsetTop+this.height
+            && character.position().right > this.offsetLeft+15 
+            && character.position().left < this.offsetLeft + this.width-15
+            ){
                 character.top[i].sum =  5;
             }else{
                 character.top[i].sum =  0;
             }
-            if(character.position().top < this.offsetTop ){
+            if((character.position().top) < this.offsetTop
+            && character.position().right > this.offsetLeft+15 
+            && character.position().left < this.offsetLeft + this.width-15
+            ){
                 character.down[i].sum =  5;
             }else{
                 character.down[i].sum =  0;
             }
-            
+            console.log(i);
+            if(!this.popup){
+                this.popup = true;
+                this.popupFn();
+            }
             
         }else{
             character.left[i].sum =  0;
             character.right[i].sum =  0;
             character.top[i].sum =  0;
             character.down[i].sum =  0;
+            this.popup  = false;
         }
         
         character.leftcrush = (character.left.every((item)=>item.sum == 0));
@@ -165,7 +182,7 @@ class NailObject{
         
         
     }
-    sectionCrush(){
-        
+    popupFn(){
+       
     }
 }

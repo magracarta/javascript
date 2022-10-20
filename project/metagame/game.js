@@ -46,7 +46,6 @@ const init=()=>{
     nailObject.forEach((el, i)=>{
         const nailObject =  new NailObject(el);
         nailObjectArray.push(nailObject);
-        nailObjectArray[i].sectionCrush();
     })
     imgLoad();
     character.directionFn();
