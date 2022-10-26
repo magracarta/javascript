@@ -1,3 +1,91 @@
+let displayArra=[];
+class ObjectSEction {
+    constructor(el){
+        this.el = el;
+        this.width = this.el.offsetWidth;
+        this.height = this.el.offsetHeight;
+        this.left = this.el.offsetLeft;
+        this.top = this.el.offsetTop;
+        this.right = this.left + this.width;
+        this.bottom = this.top+ this.height;
+        this.answer = false;
+        this.answerBox = document.querySelector('.text_box');
+        this.displaynone= 0;
+    }
+    crush(){
+        if(character.position().bottom-10 > this.top &&
+            character.position().bottom-10 < this.bottom &&
+            character.position().left < this.right &&
+            character.position().right > this.left
+        ){
+            this.displaynone = 5;
+            if(key.keyDown['enter']){
+                this.answerFn();  
+                this.answer =true;
+            }
+            document.querySelector('.close').addEventListener('click',()=>{
+                this.answer= false;
+                keyMotionAnswer = false; 
+                this.outFn();
+            });
+            document.querySelector('.dim').addEventListener('click',()=>{
+                this.answer= false;
+                keyMotionAnswer = false; 
+                this.outFn();
+            });
+            if(key.keyDown['esc']){
+                this.answer= false;
+                keyMotionAnswer = false; 
+                this.outFn();
+            }
+            // displayArra.push(this.displaynone);
+        }else{
+            this.displaynone = 0;
+            this.answer= false;
+        }
+        this.display();
+        // console.log(document.querySelector('.character-wrap span').style.display);
+    }
+    answerFn(){
+        if(this.answer==false){
+            document.querySelector('.text_wrap').style.display = 'block';
+            keyMotionAnswer = true;  
+            console.log('작동'+this.el.className+'  '+keyMotionAnswer);
+            this.popupFn();
+        }
+        
+    }
+    outFn(){
+        document.querySelector('.text_wrap').style.display = 'none';
+    }
+    popupFn(){
+        if(eval(this.el.dataset.id)){
+            this.answerBox.querySelector('h2').innerHTML =(eval(this.el.dataset.id).name);
+            this.answerBox.querySelector('p').innerHTML =(eval(this.el.dataset.id).first);
+            this.answerBox.querySelector('a').innerHTML ='보러가기 >';
+            this.answerBox.querySelector('a').href =(eval(this.el.dataset.id).href);
+        }else{
+            this.answerBox.querySelector('h2').innerHTML =' ';
+            this.answerBox.querySelector('p').innerHTML ='준비중입니다. 기다려주세요!';
+            this.answerBox.querySelector('a').innerHTML =' ';
+        }
+        
+    }
+    display(){
+        // character.leftcrush = (character.left.every((item)=>item.sum == 0));
+        const fandt = (displayArra.every((ietm)=>ietm.sum == 0));
+        // console.log(displayTrue);
+        if(fandt){
+            document.querySelector('.character-wrap span').style.display='block';
+            // this.displayTrue = false;
+        }else{
+            document.querySelector('.character-wrap span').style.display='none';
+            // this.displayTrue =true;
+        }
+    }
+        
+}
+
 class Character{
     constructor(el){
         this.el = document.querySelector(el);
@@ -8,7 +96,6 @@ class Character{
         this.roomHeight = this.room.offsetHeight;
         this.movex = this.roomWidth/2;
         this.movey = this.roomHeight/2;
-        this.prevmovex;
         this.top = [];
         this.down = [];
         this.left = [];
@@ -161,7 +248,7 @@ class NailObject{
             }else{
                 character.down[i].sum =  0;
             }
-            console.log(i);
+            // console.log(i);
             if(!this.popup){
                 this.popup = true;
                 this.popupFn();

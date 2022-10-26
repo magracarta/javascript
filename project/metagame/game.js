@@ -5,12 +5,21 @@ const key = {
         39:'right',
         38:'up',
         40:'down',
+        13:'enter',
+        27:'esc',
     }
 }
 
+let displayTrue = false;
+let keyMotionAnswer = false;
 //키모션
 const windowEvent = ()=>{
     window.addEventListener('keydown',(e)=>{
+        // console.log(e.keyCode);
+        if(e.keyCode == '27'){
+            key.keyDown[key.keyValue[e.keyCode]] =true;
+        }
+        if(keyMotionAnswer)return;
         if(!key.keyValue[e.keyCode])return;
         key.keyDown[key.keyValue[e.keyCode]] =true;
         // console.log(key.keyDown);
@@ -25,7 +34,9 @@ const windowEvent = ()=>{
 
 const rendGame = ()=>{
     character.keyMotion();
-    
+    ItsectionArray.forEach((el,i)=>{
+        el.crush();
+    });
     requestAnimationFrame(rendGame);
 }
 
@@ -40,14 +51,21 @@ const imgLoad =()=>{
 
 let character;
 let nailObjectArray =[];
+let ItsectionArray = [];
 let nailObject = document.querySelectorAll('.object');
+let Itsection = document.querySelectorAll('.sectioncolor');
 const init=()=>{
+    imgLoad();
     character = new Character('.character-wrap');
     nailObject.forEach((el, i)=>{
-        const nailObject =  new NailObject(el);
-        nailObjectArray.push(nailObject);
-    })
-    imgLoad();
+        const nailObjectC =  new NailObject(el);
+        nailObjectArray.push(nailObjectC);
+    });
+    Itsection.forEach((el,i)=>{
+        const itObject = new ObjectSEction(el)
+        ItsectionArray.push(itObject);
+    });
+    
     character.directionFn();
 }
 
@@ -56,3 +74,5 @@ window.onload=()=>{
     windowEvent();
     rendGame();
 }
+
+
