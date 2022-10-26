@@ -35,7 +35,8 @@ const windowEvent = ()=>{
 const rendGame = ()=>{
     character.keyMotion();
     ItsectionArray.forEach((el,i)=>{
-        el.crush();
+        el.crush(i);
+       
     });
     requestAnimationFrame(rendGame);
 }
@@ -66,6 +67,12 @@ const init=()=>{
         ItsectionArray.push(itObject);
     });
     
+    ItsectionArray.forEach((el,i)=>{
+       
+        el.array();
+    });
+
+
     character.directionFn();
 }
 

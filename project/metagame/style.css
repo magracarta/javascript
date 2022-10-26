@@ -90,5 +90,5 @@ img { display: block;  }
    }
   }
 
-.character-wrap span {  display: none; color: #fff; font-weight: 600; position: absolute; top: -20px; width: 100%; text-align: center; animation: enter 0.5s infinite ; }
+.character-wrap span { z-index: 2;  display: none; color: #fff; font-weight: 600; position: absolute; top: -20px; width: 100%; text-align: center; animation: enter 0.5s infinite ; }
 /* .sectioncolor {background: rgba(142, 252, 138, 0.8);   } */
