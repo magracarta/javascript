@@ -10,15 +10,15 @@ class ObjectSEction {
         this.bottom = this.top+ this.height;
         this.answer = false;
         this.answerBox = document.querySelector('.text_box');
-        this.displaynone= 0;
+        this.displaynone= {sum:0};
     }
-    crush(){
+    crush(i){
         if(character.position().bottom-10 > this.top &&
             character.position().bottom-10 < this.bottom &&
             character.position().left < this.right &&
             character.position().right > this.left
         ){
-            this.displaynone = 5;
+            displayArra[i].sum = 3;
             if(key.keyDown['enter']){
                 this.answerFn();  
                 this.answer =true;
@@ -40,11 +40,14 @@ class ObjectSEction {
             }
             // displayArra.push(this.displaynone);
         }else{
-            this.displaynone = 0;
+            displayArra[i].sum = 0;
             this.answer= false;
         }
         this.display();
         // console.log(document.querySelector('.character-wrap span').style.display);
+    }
+    array(){
+        displayArra.push(this.displaynone);
     }
     answerFn(){
         if(this.answer==false){
@@ -72,16 +75,16 @@ class ObjectSEction {
         
     }
     display(){
+        
         // character.leftcrush = (character.left.every((item)=>item.sum == 0));
         const fandt = (displayArra.every((ietm)=>ietm.sum == 0));
-        // console.log(displayTrue);
         if(fandt){
-            document.querySelector('.character-wrap span').style.display='block';
-            // this.displayTrue = false;
-        }else{
             document.querySelector('.character-wrap span').style.display='none';
-            // this.displayTrue =true;
+        }else{
+            document.querySelector('.character-wrap span').style.display='block';
         }
+
+        // console.log(fandt);
     }
         
 }
