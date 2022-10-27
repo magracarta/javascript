@@ -41,6 +41,11 @@ const rendGame = ()=>{
     requestAnimationFrame(rendGame);
 }
 
+const mogileReset=()=>{
+    let chatBox =  document.querySelector('.text_wrap');
+    // chatBox.style.width= window.innerWidth+'px';
+}
+
 //이미지 미리로드
 const imgLoad =()=>{
     const preLoadImgSrc = ['./img/char-walk-left.png','./img/char-walk-right.png','./img/char-walk-top.png','./img/char-walk-down.png'];
@@ -74,12 +79,19 @@ const init=()=>{
 
 
     character.directionFn();
+
+    if(window.innerWidth<468){
+        mogileReset();
+    }
 }
+
+
 
 window.onload=()=>{
     init(); 
     windowEvent();
     rendGame();
+    character.screenmovereset();
 }
 
 

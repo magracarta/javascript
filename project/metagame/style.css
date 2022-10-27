@@ -2,7 +2,7 @@
 body {  background: #333; height: 100%; }
 img { display: block;  }
 #gameContent { position: relative; height:100vh; width: 100%; display: flex; overflow: hidden; }
-.game_container { position: relative; background-image: url('./img/gameBackground.png'); background-size: cover; width: 465px; height: 834px;margin: auto; }
+.game_container { position: relative; width: 465px; background-image: url('./img/gameBackground.png'); background-size: cover;  height: 834px;margin: auto; }
 
 @keyframes cha-default {
  from {
@@ -49,9 +49,9 @@ img { display: block;  }
 .morderBlackNail { position: absolute; top: 450px; left: 12px; }
 .roseNail { position: absolute; top: 550px; left: 12px; }
 
-.indegoFlow-section { position: absolute; top: 350px; left: 90px; width:30px; height: 99px;  }
-.morderBlackNail-section { position: absolute; top: 450px; left: 90px; width:30px; height: 99px;   }
-.roseNail-section { position: absolute; top: 550px; left: 90px; width:30px; height: 120px;  }
+.indegoFlow-section { position: absolute; top: 380px; left: 90px; width:30px; height: 99px;  }
+.morderBlackNail-section { position: absolute; top: 480px; left: 90px; width:30px; height: 99px;   }
+.roseNail-section { position: absolute; top: 580px; left: 90px; width:30px; height: 120px;  }
 
 .minji { position: absolute; top: 300px; left: 380px; }
 .minji-section { position: absolute; top: 320px; left: 330px; height: 125px; width: 80px; }
@@ -64,20 +64,30 @@ img { display: block;  }
 .text_wrap { display: none; position: fixed; width:465px; height: 834px; z-index: 2; }
 .dim { content: ''; display: block; position: absolute; width:100%; 
    height: 100%; background: rgba(0,0,0,0.5); }
-   .text_wrap .text_box { color: #000; width: calc(100% - 40px); position: absolute; bottom: 0; display: block; padding: 30px 20px; background:#f7f7f7 }
-   .close { position: absolute; top: -40px; left: 0; line-height: 1em; padding: 10px;
-      color: #fff; width: 100%; text-align: center; display: block; opacity: 0.5;
-      
-   }
-.text_box p { display: block; width: 100%; }
+.text_wrap .text_box { min-height: 80px; color: #000; width: calc(100% - 40px); border-top-left-radius: 10px; border-top-right-radius: 10px;
+   position: absolute; bottom: 0; display: block; padding: 30px 20px; background:#f7f7f7 }
+.close { position: absolute; top: -40px; left: 0; line-height: 1em; 
+   color: #fff; width: 100%; text-align: center; display: block; opacity: 0.5; 
+   
+}
+.text_box img { width: 100px;  position: fixed; bottom:60%; left: 50%; margin-left: -50px; }
+.text_box p { display: block; width: 100%; font-size: 15px; padding-bottom: 30px; padding-top: 10px; line-height: 1.5em; }
+.text_box h2 { display: block; font-size: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc; }
+.text_box a {  font-size: 13px; display: inline-block; text-decoration: none; padding: 10px 20px; background: #000; color: #fff; }
+
+.text_box > span { display: none; position: absolute; right: 20px; bottom: 20px; }
 
 @media screen and (max-width: 465px ) {
-   .text_wrap { width:100%;  position: absolute;  }
+   /* .game_container { width: 100%; } */
+   .text_wrap { width:100%;  position: fixed;  top: 0; left: 0;  }
+   .text_box img { width: 30%;  top:20%; left: 35%; margin-left: 0; }
+}
+@media screen and (min-width: 465px )  and (min-height: 834px ){
+   .text_box img { width: 150px;  position: fixed; bottom:55%; left: 50%; margin-left: -75px; }
 }
 
-
 @media screen and (max-height: 834px ) {
-   .text_wrap { height: 100%;  }
+   .text_wrap { height: 100%; bottom: 0;  }
 }
 
 
@@ -91,4 +101,6 @@ img { display: block;  }
   }
 
 .character-wrap span { z-index: 2;  display: none; color: #fff; font-weight: 600; position: absolute; top: -20px; width: 100%; text-align: center; animation: enter 0.5s infinite ; }
+
+
 /* .sectioncolor {background: rgba(142, 252, 138, 0.8);   } */
