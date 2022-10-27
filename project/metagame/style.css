@@ -68,14 +68,14 @@ img { display: block;  }
    position: absolute; bottom: 0; display: block; padding: 30px 20px; background:#f7f7f7 }
 .close { position: absolute; top: -40px; left: 0; line-height: 1em; 
    color: #fff; width: 100%; text-align: center; display: block; opacity: 0.5; 
-   
+   cursor: pointer;
 }
 .text_box img { width: 100px;  position: fixed; bottom:60%; left: 50%; margin-left: -50px; }
 .text_box p { display: block; width: 100%; font-size: 15px; padding-bottom: 30px; padding-top: 10px; line-height: 1.5em; }
 .text_box h2 { display: block; font-size: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc; }
 .text_box a {  font-size: 13px; display: inline-block; text-decoration: none; padding: 10px 20px; background: #000; color: #fff; }
 
-.text_box > span { display: none; position: absolute; right: 20px; bottom: 20px; }
+.text_box > span { opacity: .3; display: none; position: absolute; right: 20px; bottom: 20px; }
 
 @media screen and (max-width: 465px ) {
    /* .game_container { width: 100%; } */
