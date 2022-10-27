@@ -64,8 +64,8 @@ img { display: block;  }
 .text_wrap { display: none; position: fixed; width:465px; height: 834px; z-index: 2; }
 .dim { content: ''; display: block; position: absolute; width:100%; 
    height: 100%; background: rgba(0,0,0,0.5); }
-.text_wrap .text_box { min-height: 80px; color: #000; width: calc(100% - 40px); border-top-left-radius: 10px; border-top-right-radius: 10px;
-   position: absolute; bottom: 0; display: block; padding: 30px 20px; background:#f7f7f7 }
+.text_wrap .text_box { min-height: 80px; color: #000; width: calc(100% - 60px); border-top-left-radius: 10px; border-top-right-radius: 10px;
+   position: absolute; bottom: 0; display: block; padding: 30px 30px; background:#f7f7f7 }
 .close { position: absolute; top: -40px; left: 0; line-height: 1em; 
    color: #fff; width: 100%; text-align: center; display: block; opacity: 0.5; 
    cursor: pointer;
@@ -75,7 +75,7 @@ img { display: block;  }
 .text_box h2 { display: block; font-size: 20px; padding-bottom: 10px; border-bottom: 1px solid #ccc; }
 .text_box a {  font-size: 13px; display: inline-block; text-decoration: none; padding: 10px 20px; background: #000; color: #fff; }
 
-.text_box > span { opacity: .3; display: none; position: absolute; right: 20px; bottom: 20px; }
+.text_box > span { opacity: .3; display: none; position: absolute; right: 30px; bottom: 30px; }
 
 @media screen and (max-width: 465px ) {
    /* .game_container { width: 100%; } */

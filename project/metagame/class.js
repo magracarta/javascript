@@ -30,18 +30,20 @@ class ObjectSEction {
                 this.answer= false;
                 keyMotionAnswer = false; 
                 this.outFn();
+                this.enter = 0;
             });
             document.querySelector('.dim').addEventListener('click',()=>{
                 this.answer= false;
                 keyMotionAnswer = false; 
                 this.outFn();
+                this.enter = 0;
                 
             });
             if(key.keyDown['esc']){
                 this.answer= false;
                 keyMotionAnswer = false; 
                 this.outFn();
-                // this.enter = 0;
+                this.enter = 0;
             }
             // displayArra.push(this.displaynone);
         }else{
@@ -104,6 +106,7 @@ class ObjectSEction {
                     }
                 },300);
             }else{
+                
                 this.answerBox.querySelector('h2').style.display='block';
                 this.answerBox.querySelector('h2').innerHTML =(eval(this.el.dataset.id).name);
                 this.answerBox.querySelector('a').style.display='none';
@@ -132,6 +135,7 @@ class ObjectSEction {
                 }else{
                     document.querySelector('.text_box img').style.display = 'none';
                 }    
+                document.querySelector('.text_box > span').style.display='none';
             }
 
             
@@ -149,6 +153,7 @@ class ObjectSEction {
             });
             this.answerBox.querySelector('a').style.display='none';
             this.answerBox.querySelector('a').innerHTML =' ';
+            document.querySelector('.text_box > span').style.display='none';
         }
         
     }
@@ -166,8 +171,14 @@ class ObjectSEction {
     }
 
     chatsecondFn(text2,charset2,chatSecond){
+        if(character.position().bottom-10 > this.top &&
+        character.position().bottom-10 < this.bottom &&
+        character.position().left < this.right &&
+        character.position().right > this.left){
+
+        
         this.enter+=1;
-        // console.log(this.enter);
+        console.log(this.enter);
         if(this.enter == 2){
             text2=(eval(this.el.dataset.id).second);
             charset2 = text2.split('');
@@ -195,6 +206,7 @@ class ObjectSEction {
                 document.querySelector('.text_box > span').style.display='none';
             }
         }
+    }
         
     }
         

@@ -34,7 +34,7 @@ const minji = {
 
 const dainel = {
     name : '다니엘',
-    first : `안녕? 나는 이번에 이걸 붙였어!`,
+    first : `안녕? 나는 이번에 달마시안 네일을 붙였어!`,
     second: `너도 관심있니?`,
     href: `https://fingersuit.kr/product/detail.html?product_no=123&cate_no=42&display_group=1`,
 }
