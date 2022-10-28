@@ -93,7 +93,13 @@
 <script>
 const userAngent = navigator.userAgent;
 if(userAngent.indexOf('KAKAO')>-1){
-    alert('새로운 수정');
-    document.querySelector('#gameContent').remove();
+    if ((navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+    alert('You are using an iPhone, ipod or an ipad');
+    location.href='ftp://magracarta.github.io/javascript/project/metagame/index.html'
+    }else{
+        location.href='intent://magracarta.github.io/javascript/project/metagame/index.html#Intent;scheme=http;package=com.android.chrome;end'
+    }
+
+    
 }
 </script>
