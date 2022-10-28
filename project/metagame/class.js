@@ -333,7 +333,7 @@ class Character{
     }
     screenmovereset(){
         if(window.innerWidth<465){
-            this.room.style.position='fixed';
+            this.room.style.position='absolute';
             let left = (window.innerWidth - this.roomWidth)/2;
             this.room.style.left=left+'px';
         }   
