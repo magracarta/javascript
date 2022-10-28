@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0;  }
-body {  background: #333; height: 100%; }
+body {  background: #333; height: 100%; overflow: hidden; }
 img { display: block;  }
-#gameContent { position: relative; height:100vh; width: 100%; display: flex; overflow: hidden; }
+#gameContent { position: relative; height:100vh; width: 100%; display: flex; overflow: hidden;  touch-action: none;}
 .game_container { position: relative; width: 465px; background-image: url('./img/gameBackground.png'); background-size: cover;  height: 834px;margin: auto; }
 
 @keyframes cha-default {
