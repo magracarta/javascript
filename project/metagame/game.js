@@ -96,6 +96,7 @@ window.onload=()=>{
     windowEvent();
     rendGame();
     if(window.outerHeight > 800){
+        character.screenmovereset();
         addEventListener('resize', (event) => {
             character.screenmovereset();
         });
