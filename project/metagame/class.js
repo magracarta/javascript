@@ -122,7 +122,7 @@ class ObjectSEction {
                 });
                 if((eval(this.el.dataset.id).href)){
                     setTimeout(()=>{
-                        this.answerBox.querySelector('a').innerHTML ='보러가기 >';
+                        this.answerBox.querySelector('a').innerHTML ='보러가기';
                         this.answerBox.querySelector('a').href =(eval(this.el.dataset.id).href);
                         this.answerBox.querySelector('a').style.display='inline-block';
                     },chatSecond+200);
@@ -198,7 +198,7 @@ class ObjectSEction {
 
             if((eval(this.el.dataset.id).href)){
                 setTimeout(()=>{
-                    this.answerBox.querySelector('a').innerHTML ='보러가기 >';
+                    this.answerBox.querySelector('a').innerHTML ='보러가기';
                     this.answerBox.querySelector('a').href =(eval(this.el.dataset.id).href);
                     this.answerBox.querySelector('a').style.display='inline-block';
                 },chatSecond+200);
