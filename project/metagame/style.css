@@ -82,6 +82,7 @@ justify-content: center;   position: absolute; left:20px; bottom: 30px; padding:
 
 
 @media screen and (max-width: 465px ) {
+   #gameContent  { position: fixed; width: 100%; top: 0; left: 0; }
    /* .game_container { width: 100%; } */
    .text_wrap { width:100%;  position: fixed;  top: 0; left: 0;  }
    .text_box img { width: 30%;  top:20%; left: 35%; margin-left: 0; }
