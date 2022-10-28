@@ -12,6 +12,9 @@ const key = {
 
 let displayTrue = false;
 let keyMotionAnswer = false;
+
+
+
 //키모션
 const windowEvent = ()=>{
     window.addEventListener('keydown',(e)=>{

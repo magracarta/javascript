@@ -61,7 +61,7 @@ img { display: block;  }
 .dainel-section { position: absolute; top: 620px; left: 330px; height: 130px; width: 80px; }
 
 
-.text_wrap { display: none; position: fixed; width:465px; height: 834px; z-index: 2; }
+.text_wrap { display: none; position: fixed; width:465px; height: 834px; z-index: 3; }
 .dim { content: ''; display: block; position: absolute; width:100%; 
    height: 100%; background: rgba(0,0,0,0.5); }
 .text_wrap .text_box { min-height: 80px; color: #000; width: calc(100% - 60px); border-top-left-radius: 10px; border-top-right-radius: 10px;
@@ -76,24 +76,35 @@ img { display: block;  }
 .text_box a {  font-size: 13px; display: inline-block; text-decoration: none; padding: 10px 20px; background: #000; color: #fff; }
 
 .text_box > span { opacity: .3; display: none; position: absolute; right: 30px; bottom: 30px; }
+.arrowBtnWrap {z-index: 2; align-items: center; justify-content: center; position: absolute; right:20px; bottom: 20px; width: 120px; height: 120px;  background: rgba(20,20,20,0.5); border: 1px solid #555;  border-radius: 50%; }
+.enter { border-radius: 5px; font-size: 13px;  animation: enter 1s alternate infinite ; z-index: 2; display: none; align-items: center; 
+justify-content: center;   position: absolute; left:20px; bottom: 30px; padding: 10px 20px; background: rgba(20,20,20,0.5); color: rgba(255,255,255,0.8);}
+
 
 @media screen and (max-width: 465px ) {
    /* .game_container { width: 100%; } */
    .text_wrap { width:100%;  position: fixed;  top: 0; left: 0;  }
    .text_box img { width: 30%;  top:20%; left: 35%; margin-left: 0; }
+   
+   .arrowBtnWrap  { position: fixed; bottom: 20px; right: 20px; }
+   .enter  {  position: fixed;  left:20px; bottom: 30px;  }
+   .character-wrap span  { display: none !important; }
 }
-@media screen and (min-width: 465px )  and (min-height: 834px ){
-   .text_box img { width: 150px;  position: fixed; bottom:55%; left: 50%; margin-left: -75px; }
+@media screen and (min-width: 600px ) {
+   /* .text_box img { width: 150px;  position: fixed; bottom:55%; left: 50%; margin-left: -75px; } */
+   .enter  { display: none !important; }
+   .arrowBtnWrap { display: none !important; }
 }
 
 @media screen and (max-height: 834px ) {
    .text_wrap { height: 100%; bottom: 0;  }
+   .arrowBtnWrap  { position: fixed; bottom: 20px; }
 }
 
 
 @keyframes enter {
    from {
-      opacity: 0;
+      opacity: 0.5;
    }
    to {
       opacity: 1;
@@ -101,6 +112,8 @@ img { display: block;  }
   }
 
 .character-wrap span { z-index: 2;  display: none; color: #fff; font-weight: 600; position: absolute; top: -20px; width: 100%; text-align: center; animation: enter 0.5s infinite ; }
+
+
 
 
 /* .sectioncolor {background: rgba(142, 252, 138, 0.8);   } */

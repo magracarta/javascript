@@ -51,7 +51,7 @@ class ObjectSEction {
             this.answer= false;
         }
         this.display();
-        // console.log(document.querySelector('.character-wrap span').style.display);
+        //  (document.querySelector('.character-wrap span').style.display);
     }
     array(){
         displayArra.push(this.displaynone);
@@ -60,7 +60,7 @@ class ObjectSEction {
         if(this.answer==false){
             document.querySelector('.text_wrap').style.display = 'block';
             keyMotionAnswer = true;  
-            //console.log('작동'+this.el.className+'  '+keyMotionAnswer);
+            // ('작동'+this.el.className+'  '+keyMotionAnswer);
             this.popupFn();
         }
         
@@ -163,11 +163,12 @@ class ObjectSEction {
         const fandt = (displayArra.every((ietm)=>ietm.sum == 0));
         if(fandt){
             document.querySelector('.character-wrap span').style.display='none';
+            document.querySelector('.enter').style.display='none';
         }else{
             document.querySelector('.character-wrap span').style.display='block';
+            document.querySelector('.enter').style.display='flex';
         }
 
-        // console.log(fandt);
     }
 
     chatsecondFn(text2,charset2,chatSecond){
@@ -178,7 +179,6 @@ class ObjectSEction {
 
         
         this.enter+=1;
-        console.log(this.enter);
         if(this.enter == 2){
             text2=(eval(this.el.dataset.id).second);
             charset2 = text2.split('');
@@ -291,7 +291,7 @@ class Character{
        if(key.keyDown['down']){
         this.direction = 'down';
         this.el.classList.add('walkdown');
-        if(this.movey <= this.roomHeight-(this.size().height + 50) && character.downcrush){
+        if(this.movey <= this.roomHeight-(this.size().height + 30) && character.downcrush){
             this.movey +=this.speed;
             this.screenbottom = true;
         };
@@ -372,7 +372,7 @@ class Character{
                     this.room.style.top=-5+'px';
                 }
             }
-            if( this.movey > (this.roomHeight/window.innerHeight)*300 && !this.screentop && this.screenbottom){
+            if( this.movey > (this.roomHeight/window.innerHeight)*250 && !this.screentop && this.screenbottom){
                 this.room.style.top = topNum-movenum +'px';
                 if(topNum <= (window.innerHeight-this.roomHeight )+5){
                     this.room.style.top=  (window.innerHeight-this.roomHeight )+5 +'px';
@@ -395,7 +395,7 @@ class NailObject{
         this.popup = false;
     }
     sectionInOut(i){
-        // console.log(character.direction);
+        //  (character.direction);
         if(
             character.position().right > this.offsetLeft 
             && character.position().left < this.offsetLeft + this.width 
@@ -437,7 +437,7 @@ class NailObject{
             }else{
                 character.down[i].sum =  0;
             }
-            // console.log(i);
+            //  (i);
             if(!this.popup){
                 this.popup = true;
                 this.popupFn();
