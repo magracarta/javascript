@@ -33,11 +33,10 @@ class ObjectSEction {
                 this.enter = 0;
             });
             document.querySelector('.dim').addEventListener('click',()=>{
-                this.answer= false;
-                keyMotionAnswer = false; 
-                this.outFn();
-                this.enter = 0;
-                
+                    this.answer= false;
+                    keyMotionAnswer = false; 
+                    this.outFn();
+                    this.enter = 0;
             });
             if(key.keyDown['esc']){
                 this.answer= false;
