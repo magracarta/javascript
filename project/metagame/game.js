@@ -45,7 +45,8 @@ const rendGame = ()=>{
 }
 
 const mogileReset=()=>{
-    let chatBox =  document.querySelector('.text_wrap');
+    let gameContent =  document.querySelector('#gameContent');
+    gameContent.style.height = window.innerHeight + 'px';
     // chatBox.style.width= window.innerWidth+'px';
 }
 
