@@ -104,7 +104,7 @@ window.onload=()=>{
         character.screenmovereset();
         
     }
-    alert(window.outerHeight , window.innerHeight)
+    alert(window.outerHeight +'안밖'+ window.innerHeight)
 }
 
 
