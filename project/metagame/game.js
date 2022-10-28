@@ -46,7 +46,7 @@ const rendGame = ()=>{
 
 const mogileReset=()=>{
     let gameContent =  document.querySelector('#gameContent');
-    gameContent.style.height = window.innerHeight + 'px';
+    // gameContent.style.height = window.innerHeight + 'px';
     // chatBox.style.width= window.innerWidth+'px';
 }
 
