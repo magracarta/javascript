@@ -95,7 +95,10 @@ window.onload=()=>{
     init(); 
     windowEvent();
     rendGame();
-    character.screenmovereset();
+    addEventListener('resize', (event) => {
+        character.screenmovereset();
+    });
+    
 }
 
 
