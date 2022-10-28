@@ -369,7 +369,7 @@ class Character{
         let topstr = (this.room.style.top);
         let topNum = (parseInt(topstr));
         let userAngent = navigator.userAgent;
-        if((window.innerHeight < 590 && !userAngent.indexOf('Safari')>-1)){
+        if((window.innerHeight < 590 && !userAngent.indexOf('KAKAO')>-1)){
             if(topNum <= 0 && topNum >= (window.innerHeight - this.roomHeight )){
             
                 if( this.movey < (this.roomWidth/window.innerHeight)*400 && this.screentop && !this.screenbottom){
