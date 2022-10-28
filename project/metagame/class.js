@@ -337,12 +337,15 @@ class Character{
             let left = (window.innerWidth - this.roomWidth)/2;
             this.room.style.left=left+'px';
         }   
+        
         if(window.innerHeight < this.roomHeight){
             let top = (window.innerHeight - this.roomHeight)/2;
             this.room.style.top=top+'px'
         }else{
             // this.room.style.top=50+'%'
         }
+
+       
     }
     screenmove(){
         let movenum=3;

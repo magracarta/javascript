@@ -95,17 +95,25 @@ window.onload=()=>{
     init(); 
     windowEvent();
     rendGame();
-    if(window.outerHeight > 800){
+    const userAngent = navigator.userAgent;
+    
+    if(window.outerHeight > 800 || userAngent.indexOf('KAKAO')>-1){
         character.screenmovereset();
         addEventListener('resize', (event) => {
             character.screenmovereset();
         });
         
+    }else if(window.outerHeight > 590 && userAngent.indexOf('KAKAO')>-1){
+        character.screenmovereset();
+        addEventListener('resize', (event) => {
+            character.screenmovereset();
+        });
+        alert(window.outerHeight +'안밖'+ window.innerHeight)
+        
     }else{
         character.screenmovereset();
         
     }
-    alert(window.outerHeight +'안밖'+ window.innerHeight)
 }
 
 
