@@ -95,7 +95,7 @@ window.onload=()=>{
     init(); 
     windowEvent();
     rendGame();
-    const userAngent = navigator.userAgent;
+    let userAngent = navigator.userAgent;
     
     if(window.outerHeight > 590 && userAngent.indexOf('KAKAO')>-1){
         

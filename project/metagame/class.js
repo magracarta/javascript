@@ -368,23 +368,28 @@ class Character{
         }
         let topstr = (this.room.style.top);
         let topNum = (parseInt(topstr));
-        if(topNum <= 0 && topNum >= (window.innerHeight - this.roomHeight )){
-           
-            if( this.movey < (this.roomWidth/window.innerHeight)*400 && this.screentop && !this.screenbottom){
-                this.room.style.top = topNum+movenum +'px';
-                if(topNum >= -5){
-                    this.room.style.top=-5+'px';
-                }
-            }
-            if( this.movey > (this.roomHeight/window.innerHeight)*250 && !this.screentop && this.screenbottom){
-                this.room.style.top = topNum-movenum +'px';
-                if(topNum <= (window.innerHeight-this.roomHeight )+5){
-                    this.room.style.top=  (window.innerHeight-this.roomHeight )+5 +'px';
-                }
-            }
+        let userAngent = navigator.userAgent;
+        if((window.innerHeight < 590 && !userAngent.indexOf('Safari')>-1)){
+            if(topNum <= 0 && topNum >= (window.innerHeight - this.roomHeight )){
             
+                if( this.movey < (this.roomWidth/window.innerHeight)*400 && this.screentop && !this.screenbottom){
+                    this.room.style.top = topNum+movenum +'px';
+                    if(topNum >= -5){
+                        this.room.style.top=-5+'px';
+                    }
+                }
+                if( this.movey > (this.roomHeight/window.innerHeight)*250 && !this.screentop && this.screenbottom){
+                    let userAngent = navigator.userAgent;
+        
+                    
+                    this.room.style.top = topNum-movenum +'px';
+                    if(topNum <= (window.innerHeight-this.roomHeight )+5){
+                        this.room.style.top=  (window.innerHeight-this.roomHeight )+5 +'px';
+                    }
+                }
+                
+            }
         }
-    
     }
 }
 
