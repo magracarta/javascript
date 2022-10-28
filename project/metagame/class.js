@@ -337,8 +337,8 @@ class Character{
             let left = (window.innerWidth - this.roomWidth)/2;
             this.room.style.left=left+'px';
         }   
-        if( window.outerHeight < this.roomHeight){
-            let top = ( window.outerHeight - this.roomHeight)/2;
+        if(window.innerHeight < this.roomHeight){
+            let top = (window.innerHeight - this.roomHeight)/2;
             this.room.style.top=top+'px'
         }else{
             // this.room.style.top=50+'%'
@@ -365,18 +365,18 @@ class Character{
         }
         let topstr = (this.room.style.top);
         let topNum = (parseInt(topstr));
-        if(topNum <= 0 && topNum >= ( window.outerHeight - this.roomHeight )){
+        if(topNum <= 0 && topNum >= (window.innerHeight - this.roomHeight )){
            
-            if( this.movey < (this.roomWidth/ window.outerHeight)*400 && this.screentop && !this.screenbottom){
+            if( this.movey < (this.roomWidth/window.innerHeight)*400 && this.screentop && !this.screenbottom){
                 this.room.style.top = topNum+movenum +'px';
                 if(topNum >= -5){
                     this.room.style.top=-5+'px';
                 }
             }
-            if( this.movey > (this.roomHeight/ window.outerHeight)*250 && !this.screentop && this.screenbottom){
+            if( this.movey > (this.roomHeight/window.innerHeight)*250 && !this.screentop && this.screenbottom){
                 this.room.style.top = topNum-movenum +'px';
-                if(topNum <= ( window.outerHeight-this.roomHeight )+5){
-                    this.room.style.top=  ( window.outerHeight-this.roomHeight )+5 +'px';
+                if(topNum <= (window.innerHeight-this.roomHeight )+5){
+                    this.room.style.top=  (window.innerHeight-this.roomHeight )+5 +'px';
                 }
             }
             
