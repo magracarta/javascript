@@ -108,7 +108,7 @@ window.onload=()=>{
         character.screenmovereset();
         
     }
-    // alert(document.querySelector('body').offsetHeight +'안밖'+ window.innerHeight)
+    alert(document.querySelector('body').offsetHeight +'안밖'+ window.innerHeight)
 }
 
 
