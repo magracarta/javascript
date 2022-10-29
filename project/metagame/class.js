@@ -368,7 +368,7 @@ class Character{
         }
         let topstr = (this.room.style.top);
         let topNum = (parseInt(topstr));
-        let userAngent = navigator.userAgent;
+        // let userAngent = navigator.userAgent;
         // if((window.innerHeight > 590 && userAngent.indexOf('KAKAO')>-1))return;
             if(topNum <= 0 && topNum >= (window.innerHeight - this.roomHeight )){
             
