@@ -98,10 +98,10 @@ window.onload=()=>{
     let userAngent = navigator.userAgent;
     
     if(window.outerHeight > 590 && userAngent.indexOf('KAKAO')>-1){
-        
-        character.room.style.top=0+'px'
-        character.room.style.marginTop = 0 +'px'
-        alert(window.outerHeight +'안밖'+ window.innerHeight)
+        character.roomHeight = 720+'px';
+        // character.room.style.top=0+'px';
+        // character.room.style.marginTop = 0 +'px';
+        alert('수정'+ window.innerHeight);
         
     }else{
         character.screenmovereset();
