@@ -97,8 +97,9 @@ window.onload=()=>{
     rendGame();
     let userAngent = navigator.userAgent;
     
-    if(window.outerHeight > 590 && userAngent.indexOf('KAKAO')>-1){
+    if(userAngent.indexOf('KAKAO')>-1){
         document.querySelector('#gameContent').style.height =window.innerHeight + 'px';
+        document.querySelector('body').style.height =window.innerHeight + 'px';
         // character.room.style.height = window.innerHeight;
         // character.room.style.top=0+'px'
         // character.room.style.marginTop = 0 +'px'
@@ -107,7 +108,7 @@ window.onload=()=>{
         character.screenmovereset();
         
     }
-    alert(document.querySelector('body').offsetHeight +'안밖'+ window.innerHeight)
+    // alert(document.querySelector('body').offsetHeight +'안밖'+ window.innerHeight)
 }
 
 
