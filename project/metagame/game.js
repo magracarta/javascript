@@ -105,10 +105,12 @@ window.onload=()=>{
         // character.room.style.marginTop = 0 +'px'
         character.screenmovereset();
         document.querySelector('.arrowBtnWrap').style.top = window.innerHeight - 150 +'px';
-        document.querySelector('.enter').style.top = window.innerHeight - 180 +'px';
+        document.querySelector('.enter').style.top = window.innerHeight - 120 +'px';
         alert('위치 고정')
     }else{
         character.screenmovereset();
+        document.querySelector('.arrowBtnWrap').style.top = window.innerHeight - 150 +'px';
+        document.querySelector('.enter').style.top = window.innerHeight - 120 +'px';
         
     }
 }
