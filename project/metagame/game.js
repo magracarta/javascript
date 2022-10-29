@@ -103,11 +103,11 @@ window.onload=()=>{
         // character.room.style.top=0+'px'
         // character.room.style.marginTop = 0 +'px'
         character.screenmovereset();
-        alert(window.outerHeight +'안밖'+ window.innerHeight)
     }else{
         character.screenmovereset();
         
     }
+    alert(document.querySelector('body').offsetHeight +'안밖'+ window.innerHeight)
 }
 
 
