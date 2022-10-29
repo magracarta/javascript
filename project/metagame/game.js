@@ -97,14 +97,13 @@ window.onload=()=>{
     rendGame();
     let userAngent = navigator.userAgent;
     
-    if(window.outerHeight > 590 && userAngent.indexOf('Safari')>-1){
+    if(window.outerHeight > 590 && userAngent.indexOf('KAKAO')>-1){
         document.querySelector('#gameContent').style.height =window.innerHeight + 'px';
         // character.room.style.height = window.innerHeight;
         // character.room.style.top=0+'px'
         // character.room.style.marginTop = 0 +'px'
         character.screenmovereset();
         alert(window.outerHeight +'안밖'+ window.innerHeight)
-        
     }else{
         character.screenmovereset();
         
