@@ -62,9 +62,7 @@ var joy = document.getElementById("joy");
 
       let userAngent = navigator.userAgent;
     
-      if(userAngent.indexOf('KAKAO')>-1){
-        window.scrollTo(0, 0)
-      }
+      
 
     }
 
@@ -110,4 +108,10 @@ var joy = document.getElementById("joy");
     });
     document.querySelector('.enter').addEventListener("mouseup", ()=>{
         key.keyDown[key.keyValue[13]] =false;
+    });
+
+    window.addEventListener("touchmove",()=>{
+      if(userAngent.indexOf('KAKAO')>-1){
+        window.scrollTo(0, 0)
+      }
     });
