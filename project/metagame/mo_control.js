@@ -60,6 +60,12 @@ var joy = document.getElementById("joy");
         
       }
 
+      let userAngent = navigator.userAgent;
+    
+      if(userAngent.indexOf('KAKAO')>-1){
+        window.scrollTo(0, 0)
+      }
+
     }
 
     function up() {
