@@ -99,7 +99,7 @@ window.onload=()=>{
     
     if(userAngent.indexOf('KAKAO')>-1){
         document.querySelector('#gameContent').style.height =window.innerHeight + 'px';
-        document.querySelector('body').style.height =window.innerHeight + 'px';
+        // document.querySelector('body').style.height =window.innerHeight + 'px';
         // character.room.style.height = window.innerHeight;
         // character.room.style.top=0+'px'
         // character.room.style.marginTop = 0 +'px'
