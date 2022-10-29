@@ -234,6 +234,7 @@ class Character{
         this.screenright = false;
         this.screentop = false;
         this.screenbottom = false;
+        this.wiH = window.innerHeight;
     }
     keyMotion(){
         if((key.keyDown['left']&&key.keyDown['up'])
@@ -338,8 +339,8 @@ class Character{
             this.room.style.left=left+'px';
         }   
         
-        if(window.innerHeight < this.roomHeight){
-            let top = (window.innerHeight - this.roomHeight)/2;
+        if(this.wiH < this.roomHeight){
+            let top = (this.wiH - this.roomHeight)/2;
             this.room.style.top=top+'px'
         }else{
             // this.room.style.top=50+'%'
@@ -370,21 +371,21 @@ class Character{
         let topNum = (parseInt(topstr));
         // let userAngent = navigator.userAgent;
         // if((window.innerHeight > 590 && userAngent.indexOf('KAKAO')>-1))return;
-            if(topNum <= 0 && topNum >= (window.innerHeight - this.roomHeight )){
+            if(topNum <= 0 && topNum >= (this.wiH - this.roomHeight )){
             
-                if( this.movey < (this.roomWidth/window.innerHeight)*400 && this.screentop && !this.screenbottom){
+                if( this.movey < (this.roomWidth/this.wiH)*400 && this.screentop && !this.screenbottom){
                     this.room.style.top = topNum+movenum +'px';
                     if(topNum >= -5){
                         this.room.style.top=-5+'px';
                     }
                 }
-                if( this.movey > (this.roomHeight/window.innerHeight)*250 && !this.screentop && this.screenbottom){
+                if( this.movey > (this.roomHeight/this.wiH)*250 && !this.screentop && this.screenbottom){
                     let userAngent = navigator.userAgent;
         
                     
                     this.room.style.top = topNum-movenum +'px';
-                    if(topNum <= (window.innerHeight-this.roomHeight )+5){
-                        this.room.style.top=  (window.innerHeight-this.roomHeight )+5 +'px';
+                    if(topNum <= (this.wiH-this.roomHeight )+5){
+                        this.room.style.top=  (this.wiH-this.roomHeight )+5 +'px';
                     }
                 }
                 
