@@ -113,6 +113,6 @@ var joy = document.getElementById("joy");
     window.addEventListener("touchmove",()=>{
       let userAngent = navigator.userAgent;
       if(userAngent.indexOf('KAKAO')>-1){
-        window.scrollTo(0, 0)
+        // window.scrollTo(0, 0)
       }
     });
