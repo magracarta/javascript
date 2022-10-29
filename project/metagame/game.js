@@ -104,11 +104,13 @@ window.onload=()=>{
         // character.room.style.top=0+'px'
         // character.room.style.marginTop = 0 +'px'
         character.screenmovereset();
+        document.querySelector('.arrowBtnWrap').style.top = window.innerHeight - 150 +'px';
+        document.querySelector('.enter').style.top = window.innerHeight - 180 +'px';
+        alert('위치 고정')
     }else{
         character.screenmovereset();
         
     }
-    alert(document.querySelector('body').offsetHeight +'안밖'+ window.innerHeight)
 }
 
 
