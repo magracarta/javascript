@@ -220,7 +220,7 @@ class Character{
         // this.roomWidth = this.room.offsetWidth;
         this.roomWidth = 465;
         this.roomHeight = this.room.offsetHeight;
-        this.movex = this.roomWidth/2;
+        this.movex = this.roomWidth/2-20;
         this.movey = this.roomHeight/2;
         this.top = [];
         this.down = [];
@@ -235,6 +235,7 @@ class Character{
         this.screentop = false;
         this.screenbottom = false;
         this.wiH = window.innerHeight;
+        this.movenum=3;
     }
     keyMotion(){
         if((key.keyDown['left']&&key.keyDown['up'])
@@ -242,9 +243,11 @@ class Character{
         ||(key.keyDown['right']&&key.keyDown['up'])
         ||(key.keyDown['right']&&key.keyDown['down'])
         ){
-            this.speed = 2.2;
+            this.speed = 2;
+            this.movenum = 1;
         }else{
             this.speed = 3;
+            this.movenum =3;
         }
 
         nailObjectArray.forEach((el, i)=>{
@@ -258,6 +261,7 @@ class Character{
             (character.leftcrush)){
             this.movex -=this.speed;
             this.screenleft = true;
+            this.screenmove();
         };
        }else{ 
            // this.direction = 'default';
@@ -270,6 +274,7 @@ class Character{
         if(this.movex <= this.roomWidth-(this.size().width + 10) && character.rightcrush){
             this.movex +=this.speed;
             this.screenright = true;
+            this.screenmove();
         };
        }else{
         // this.direction = 'default';
@@ -282,6 +287,7 @@ class Character{
         if(this.movey >= 150 && character.topcrush){
             this.movey -=this.speed;
             this.screentop = true;
+            this.screenmove();
         };
        }else{
         // this.direction = 'default';
@@ -294,6 +300,7 @@ class Character{
         if(this.movey <= this.roomHeight-(this.size().height + 30) && character.downcrush){
             this.movey +=this.speed;
             this.screenbottom = true;
+            this.screenmove();
         };
        }else{
         // this.direction = 'default';
@@ -303,7 +310,7 @@ class Character{
        this.el.style.left = this.movex+'px';
        this.el.style.top = this.movey+'px';
        
-       this.screenmove();
+       
     }
     position(){
         return{
@@ -349,18 +356,18 @@ class Character{
        
     }
     screenmove(){
-        let movenum=3;
+        
         let leftStr = (this.room.style.left);
         let leftNum = (parseInt(leftStr||0, 10));
         if(leftNum <= 0 && leftNum >= (window.innerWidth-this.roomWidth )){
-            if( this.movex < (this.roomWidth/window.innerWidth)*150 && this.screenleft && !this.screenright){
-                this.room.style.left = leftNum+movenum +'px';
+            if( this.movex < this.roomWidth-(window.innerWidth*0.6) && this.screenleft && !this.screenright){
+                this.room.style.left = leftNum+this.movenum +'px';
                 if(leftNum >= -3){
                     this.room.style.left=-3+'px';
                 }
             }
-            if(this.movex > (this.roomWidth/window.innerWidth)*200 && this.screenright && !this.screenleft){
-                this.room.style.left = leftNum-movenum +'px';
+            if(this.movex > (window.innerWidth*0.4) && this.screenright && !this.screenleft){
+                this.room.style.left = leftNum-this.movenum +'px';
                 if(leftNum <= (window.innerWidth-this.roomWidth )+3){
                     this.room.style.left=(window.innerWidth-this.roomWidth )+3+'px';
                 }
@@ -373,17 +380,17 @@ class Character{
         // if((window.innerHeight > 590 && userAngent.indexOf('KAKAO')>-1))return;
             if(topNum <= 0 && topNum >= (this.wiH - this.roomHeight )){
             
-                if( this.movey < (this.roomWidth/this.wiH)*400 && this.screentop && !this.screenbottom){
-                    this.room.style.top = topNum+movenum +'px';
+                if( this.movey <this.roomHeight-(window.innerHeight*0.6) && this.screentop && !this.screenbottom){
+                    this.room.style.top = topNum+this.movenum +'px';
                     if(topNum >= -5){
                         this.room.style.top=-5+'px';
                     }
                 }
-                if( this.movey > (this.roomHeight/this.wiH)*250 && !this.screentop && this.screenbottom){
+                if( this.movey > (window.innerHeight*0.4) && !this.screentop && this.screenbottom){
                     let userAngent = navigator.userAgent;
         
                     
-                    this.room.style.top = topNum-movenum +'px';
+                    this.room.style.top = topNum-this.movenum +'px';
                     if(topNum <= (this.wiH-this.roomHeight )+5){
                         this.room.style.top=  (this.wiH-this.roomHeight )+5 +'px';
                     }
