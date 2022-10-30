@@ -8,7 +8,7 @@
 body {  background: #000; height: 100%; overflow: hidden; overscroll-behavior-y: none; touch-action: none;}
 img { display: block;  }
 #gameContent { position: relative; height:100vh; width: 100%; display: flex;   touch-action: none;}
-.game_container { position: relative; width: 465px; background-image: url('./img/gameBackground.png'); background-size: cover;  height: 834px;margin: auto; }
+.game_container { position: relative;  background-image: url('./img/gameBackground.png'); background-size: cover;margin: auto; }
 
 @keyframes cha-default {
  from {

@@ -217,8 +217,7 @@ class Character{
         this.direction = 'default';
         this.speed = 3;
         this.room = document.querySelector('.game_container');
-        // this.roomWidth = this.room.offsetWidth;
-        this.roomWidth = 465;
+        this.roomWidth =  this.room.offsetWidth;
         this.roomHeight = this.room.offsetHeight;
         this.movex = this.roomWidth/2-20;
         this.movey = this.roomHeight/2;
