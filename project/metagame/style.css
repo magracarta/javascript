@@ -90,7 +90,28 @@ img { display: block;  }
 justify-content: center;   position: absolute; right:160px; bottom: 50px;  width:80px; height: 50px; background: #fff; color: #000;}
 
 
+@keyframes startAnimation {
+   from {
+      opacity: 1;
+   }
+   to {
+      opacity: 0;
+      display: none;
+   }
+  }
+
+
+.excplanPopUp { animation: startAnimation 1s 2s forwards; width: 250px; position: fixed; top: 35%; left: 50%; margin-left: -125px; font-size: 14px; z-index: 3; }
+.excplanPopUp p { background:rgba(0,0,0,0.5); color: #fff; padding: 20px; text-align: center; border-radius: 10px; }
+.excplanPopUp img { width: 50%; margin: 0 auto 20px; }
+
+.pcExplan { display: none; margin-top: -20px; } 
+.moExplan { display: block; } 
+
 @media screen and (max-width: 465px ) {
+
+   
+
    #gameContent  { position: fixed; width: 100%; top: 0; left: 0; }
    .game_container { position: absolute; }
    .text_wrap { width:100%;  position: fixed;  top: 0; left: 0;  }
@@ -103,6 +124,8 @@ justify-content: center;   position: absolute; right:160px; bottom: 50px;  width
    .mobile{ display: block; }
 }
 @media screen and (min-width: 600px ) {
+   .pcExplan { display: block; } 
+   .moExplan { display: none; } 
    /* .text_box img { width: 150px;  position: fixed; bottom:55%; left: 50%; margin-left: -75px; } */
    .enter  { display: none !important; }
    .arrowBtnWrap { display: none !important; }
@@ -129,9 +152,7 @@ justify-content: center;   position: absolute; right:160px; bottom: 50px;  width
    }
   }
 
-.character-wrap span { z-index: 2;  display: none; color: #fff; font-weight: 600; position: absolute; top: -20px; width: 100%; text-align: center; animation: enter 0.5s infinite ; }
-
-
+.character-wrap span {  z-index: 2;  display: none; color: #fff; font-weight: 600; position: absolute; top: -20px; width: 100%; text-align: center; animation: enter 0.5s infinite ; }
 
 
 /* .sectioncolor {background: rgba(142, 252, 138, 0.8);   } */
