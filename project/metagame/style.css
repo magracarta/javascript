@@ -114,7 +114,7 @@ justify-content: center;   position: absolute; right:160px; bottom: 50px;  width
 
    #gameContent  { position: fixed; width: 100%; top: 0; left: 0; }
    .game_container { position: absolute; }
-   .text_wrap { width:100%;  position: fixed;  top: 0; left: 0;  }
+   .text_wrap { width:100%;  position: fixed;  top: 0; left: 0; height: 100%; }
    .text_box img { width: 30%;  top:20%; left: 35%; margin-left: 0; }
    
    .arrowBtnWrap  { position: fixed; bottom: 20px; right: 20px; }
