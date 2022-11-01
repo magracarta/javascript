@@ -345,7 +345,7 @@ class Character{
             this.room.style.left=left+'px';
         }   
         
-        if(this.wiH < this.roomHeight){
+        if(this.wiH < this.roomHeight || (window.innerWidth<600  )){
             let top = (this.wiH - this.roomHeight)/2;
             this.room.style.top=top+'px'
         }else{
