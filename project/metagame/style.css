@@ -123,7 +123,7 @@ justify-content: center;   position: absolute; right:160px; bottom: 50px;  width
    .pc{ display: none; }
    .mobile{ display: block; }
 }
-@media screen and (min-width: 600px ) {
+@media screen and (min-width: 1100px ) {
    .pcExplan { display: block; } 
    .moExplan { display: none; } 
    /* .text_box img { width: 150px;  position: fixed; bottom:55%; left: 50%; margin-left: -75px; } */

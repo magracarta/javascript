@@ -350,8 +350,8 @@ class Character{
             this.room.style.top=top+'px'
         }else{
             // this.room.style.top=50+'%'
-            let top = (this.wiH - this.roomHeight)/2;
-            this.room.style.top=top+'px'
+            // let top = (this.wiH - this.roomHeight)/2;
+            // this.room.style.top=top+'px'
         }
 
        
