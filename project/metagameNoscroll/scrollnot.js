@@ -7,8 +7,8 @@ const targetElement = document.querySelector('body');
 bodyScrollLock.disableBodyScroll(targetElement);
 
 // 3. ...in some event handler after hiding the target element...
-bodyScrollLock.enableBodyScroll(targetElement);
+//bodyScrollLock.enableBodyScroll(targetElement);
 
 // 4. Useful if we have called disableBodyScroll for multiple target elements,
 // and we just want a kill-switch to undo all that.
-bodyScrollLock.clearAllBodyScrollLocks();
+//bodyScrollLock.clearAllBodyScrollLocks();
