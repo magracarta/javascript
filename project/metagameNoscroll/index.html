@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0">
+    <meta name="author" content="김민주">
+    <title>meta</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <section id ='gameContent'>
+        <div class="game_container" style="width:465px;  height: 834px; ">
+            <!-- 캐릭터-->
+            <div class="character-wrap">
+                <span>ENTER</span>
+                <div class="character"></div>
+            </div>       
+            <!-- 캐릭터-->
+            <!-- 액자-acadeNail -->
+            <div class="acadeNail">
+                <img src="./img/nialframe-dote.png">
+            </div>
+            <div class="acadeNail-Section sectioncolor frameAction" data-id="acadeNail"></div>
+            <!-- 액자-acadeNail -->
+            <!-- 액자-blueleoNail -->
+            <div class="blueleoNail">
+                <img src="./img/nialframe-leopard.png">
+            </div>
+            <div class="blueleoNail-Section sectioncolor frameAction" data-id="blueleoNail"></div>
+            <!-- 액자-blueleoNail -->
+            <!-- 전시-indegoFlow -->
+            <div class="indegoFlow object">
+                <img src="./img/indegoFlowNail.png">
+            </div>
+            <div class="indegoFlow-section sectioncolor displayAction" data-id="indegoFlow"></div>
+            <!-- 전시-indegoFlow -->
+            <!-- 전시-morderBlackNail -->
+            <div class="morderBlackNail object">
+                <img src="./img/morderBlackNail.png">
+            </div>
+            <div class="morderBlackNail-section sectioncolor displayAction" data-id='morderBlack'></div>
+            <!-- 전시-morderBlackNail -->
+            <!-- 전시-roseNail -->
+            <div class="roseNail object">
+                <img src="./img/roseNail.png">
+            </div>
+            <div class="roseNail-section sectioncolor displayAction"></div>
+            <!-- 전시-roseNail -->
+            <!-- 뉴진즈-민지 -->
+            <div class="minji object"><img src='./img/minji.png'></div>
+            <div class="minji-section sectioncolor peopleAction" data-id='minji'></div>
+            <!-- 뉴진즈-민지 -->
+            <!-- 뉴진즈-혜린 -->
+            <div class="helin object"><img src='./img/helin.png'></div>
+            <div class="helin-section sectioncolor "></div>
+            <!-- 뉴진즈-혜린 -->
+            <!-- 뉴진즈-다니엘 -->
+            <div class="dainel object"><img src='./img/dainel.png'></div>
+            <div class="dainel-section sectioncolor peopleAction"  data-id='dainel'></div>
+            <!-- 뉴진즈-다니엘 -->
+
+            <div class="text_wrap">
+                <div class="dim"></div>
+                <div class="text_box">
+                    <div class="close">닫기</div>
+                    <img src="./img/nialframe-dote.png">
+                    <h2></h2>
+                    <p></p>
+                    <a href="#">
+                        보러가기
+                    </a>
+                    <span><span class="pc">enter or click</span><span class="mobile">TOUCH</span></span>
+                </div>
+            </div>
+
+            <div class="arrowBtnWrap">
+                <canvas id="joy" ></canvas>
+            </div>
+            <div class="enter">ENTER</div>
+        </div>
+
+        <div class="excplanPopUp">
+            <div class="pcExplan">
+                <img src="./img/keyboard.png">
+                <p>핑거수트 전시회에 어서오세요!<br>방향키를 눌러 캐릭터를<br>조작해보세요.</p>
+            </div>
+            <div class="moExplan">
+                <p>핑거수트 전시회에 어서오세요!<br>우축 하단 컨트롤러로<br>캐릭터를 조작해보세요.</p>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="bodyScrollLock.js"></script>
+<script src="scrollnot.js"></script>
+<script src="chatPopup.js"></script>
+<script src="class.js"></script>
+<script src="game.js"></script>
+<script src="mo_control.js"></script>
+</html>
