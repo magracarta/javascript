@@ -5,7 +5,7 @@
   user-select:none;
   overscroll-behavior-y: none; touch-action: none;
    margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; }
-body { width: 100%; position: fixed; top: 0; left: 0; background: #000; height: 100%; overflow: hidden; overscroll-behavior-y: none; touch-action: none;}
+body { position: fixed; top: 0; left: 0; width: 100%; background: #000; height: 100%; overflow: hidden; overscroll-behavior-y: none; touch-action: none;}
 img { display: block;  }
 #gameContent { position: relative; height:100vh; width: 100%; display: flex;   touch-action: none;}
 .game_container { position: relative;  background-image: url('./img/gameBackground.png'); background-size: cover;margin: auto; }
@@ -123,7 +123,7 @@ justify-content: center;   position: absolute; right:160px; bottom: 50px;  width
    .pc{ display: none; }
    .mobile{ display: block; }
 }
-@media screen and (min-width: 1100px ) {
+@media screen and (min-width: 600px ) {
    .pcExplan { display: block; } 
    .moExplan { display: none; } 
    /* .text_box img { width: 150px;  position: fixed; bottom:55%; left: 50%; margin-left: -75px; } */
