@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+                let answer; 
+                let array = [];
+                for(let i =0; i < arguments.length; i++){
+                    array.push(arguments[i]);
+                }
+                array.sort((a,b)=>b-a);
+                if(array[0] < array[1] + array[2]){
+                    answer = 'yes';
+                }else{
+                    answer = 'no';
+                }
+
+                return answer;
+            }
+
+            console.log(solution(6,7, 11));
+        </script>
+    </body>
+</html>

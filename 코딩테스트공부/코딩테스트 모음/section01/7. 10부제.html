@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(day, arr){
+                let answer =0;
+                arr.forEach((elem,i)=>{
+                    let string = elem.split('');
+                    let lastNum = string[string.length-1];
+                    if(parseInt(lastNum) === day){
+                        answer++;
+                    }
+                });
+                return answer;
+            }
+            
+            let text = '12 20 54 30 87 91 30';
+            let arr = [];
+            let input = text.split(' ');
+            input.forEach((elem, i)=>{
+                arr.push(elem);
+            })
+            console.log(solution(0, arr));
+        </script>
+    </body>
+</html>

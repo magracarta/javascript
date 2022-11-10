@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let imsiarr = [];
+                let odd =0;
+                arr.forEach((elem, i) => {
+                    if(elem%2 > 0){
+                        odd = odd + elem;
+                        imsiarr.push(elem);
+                    }
+                });
+                imsiarr.sort((a,b)=>a-b);
+                
+                return `${odd}\n${imsiarr[0]}`;
+            }
+            
+            arr=[12, 77, 38, 41, 53, 92, 85];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
