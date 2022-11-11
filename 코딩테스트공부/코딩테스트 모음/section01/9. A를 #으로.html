@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer ="";
+                let textArray = s.split('');
+                textArray.forEach((el, i)=>{
+                    if(textArray[i] === 'A'){
+                        textArray[i] = '#';
+                    }
+                    answer +=textArray[i];
+                });
+                return answer;
+            }
+            
+            let str="BANANA";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
+
