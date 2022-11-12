@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(str , t){
+                let answer = 0;
+                for(let i = 0; i < str.length; i++){
+                    if(str[i] == t){
+                        answer ++;
+                    }
+                }
+                return answer;
+            }
+
+            let text = 'COMPUTERPROGRAMMING';
+            console.log(solution(text, 'R'));
+        </script>
+    </body>
+</html>
+

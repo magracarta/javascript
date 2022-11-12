@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>가운데 문자</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer = '';
+                let strlength = s.length;
+                if(strlength%2 == 0){
+                    answer+=s[strlength/2-1];
+                    answer+=s[strlength/2];
+                }else{
+                    answer+=s[Math.ceil(strlength/2)-1];
+                }
+                return answer;
+            }
+            console.log(solution("good"));
+        </script>
+    </body>
+</html>
