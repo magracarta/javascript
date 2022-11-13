@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){  
+               let answer = 0;
+               for(let i =0; i < arr.length; i++){
+                for(let j= 0; j< arr[i].length; j++){
+                    let top = (arr[i-1]) ? arr[i-1][j] : 0 , 
+                    bottom = (arr[i+1]) ?  arr[i+1][j] : 0,
+                    left = arr[i][j-1] ? arr[i][j-1] : 0 , 
+                    right = arr[i][j+1] ?arr[i][j+1] : 0 ;
+
+                    if( arr[i][j] == Math.max(arr[i][j], top, left, right, bottom) )answer+=1; 
+                }
+               }
+                  
+                return answer;
+            }
+
+            let arr=[[5, 3, 7, 2, 3], 
+                     [3, 7, 1, 6, 1],
+                     [7, 2, 5, 3, 4],
+                     [4, 3, 6, 4, 1],
+                     [8, 7, 3, 5, 2]];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

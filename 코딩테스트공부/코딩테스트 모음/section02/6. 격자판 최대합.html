@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){  
+               let answer = 0, arrayMAx = [];
+               let hangMax = 0, hulMax =0, sasumMAx1 = 0, sasumMAx2 = 0;
+                for(let i =0; i<arr.length; i++){
+                    let sum = 0, sum2 = 0;
+                    for(let j =0; j< arr[i].length; j++){
+                        sum += arr[i][j];
+                        sum2 += arr[j][i];
+                    }
+                    if(hangMax<sum)hangMax =sum;
+                    if(hulMax<sum2)hulMax =sum2;
+                    
+                    sasumMAx1 += arr[i][i];
+                    sasumMAx2 += arr[i][(arr.length -1 - i)];
+                }
+                arrayMAx.push(hangMax);
+                arrayMAx.push(hulMax);
+                arrayMAx.push(sasumMAx1);
+                arrayMAx.push(sasumMAx2);
+
+                arrayMAx.sort((a,b)=>b-a);
+
+                answer = arrayMAx[0];
+                return answer;
+            }
+
+            let arr=[[10, 13, 10, 12, 15], 
+                     [12, 39, 30, 23, 11],
+                     [11, 25, 50, 53, 15],
+                     [19, 27, 29, 37, 27],
+                     [19, 13, 30, 13, 19]];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
