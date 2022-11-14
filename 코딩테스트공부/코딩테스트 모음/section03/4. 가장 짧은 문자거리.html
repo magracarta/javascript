@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s, t){
+                let answer = [];
+                s =s.toLowerCase();
+                let p =1000;
+                for(x of s){
+                    p++;
+                    if(x == t)p =0;
+                    answer.push(p);
+                }
+
+                p = 0;
+                for(let i = s.length-1; i >= 0; i--){
+                    p++;
+                    if(s[i] == t) p = 0;
+                    if(answer[i] > p) answer[i] = p;
+                }
+                
+
+                return answer;
+            }
+            
+            let str="teachermode";
+            console.log(solution(str, 'e'));
+        </script>
+    </body>
+</html>

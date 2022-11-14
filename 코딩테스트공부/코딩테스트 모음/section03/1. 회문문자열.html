@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer = 'yes';
+                let numLength = (Math.floor(s.length/2))-1;
+
+                for(let i = 0; i < numLength+1; i++){
+                    let firstStr = s[i].toLowerCase();
+                    let lastStr = s[s.length-i-1].toLowerCase();
+
+                    if(firstStr != lastStr)answer = 'no';                    
+                }
+
+                return answer;
+            }
+            
+            let str="goooG";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
+
