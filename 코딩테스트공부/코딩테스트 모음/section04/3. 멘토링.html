@@ -7,7 +7,26 @@
         <script>
             function solution(test){
                 let answer=0;
+                let n = test[0].length;
+                let m = test.length;
                 
+                for(let i =1; i <= n; i++){
+                    for(let j = 1; j <= n; j++){
+                        let count = 0;
+                        if(i != j){
+                            for(let t = 0; t < m; t++){
+                                let aStudent , bStudent;
+                                for(let num = 0; num < n; num++){
+                                    if(test[t][num] == i) aStudent = num;
+                                    if(test[t][num] == j) bStudent = num;
+                                }
+                                if(aStudent < bStudent) {count++};
+                          }
+                        }
+                        if(count >= m) {answer ++; /*console.log(i,j)*/ };
+                        
+                    }
+                }
                 return answer;
             }
             

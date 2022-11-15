@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, k, card){
+                let answer;
+                let array = [];
+                
+                for(let i =0; i < n; i++){
+                    let inum = card[i];
+                    for(let j =0; j < n; j++){
+                        let jnum = 0;
+                        if(j !== i) jnum = card[j];
+                        for(let p =0; p < n; p++){
+                            let pnum = 0;
+                            if(p !== i&& p !== j) pnum = card[p];
+                            if(array[p] !== pnum+jnum+inum) array.push(pnum+jnum+inum);
+                        }
+                    }
+                }
+
+                array.sort((a,b)=> b-a);
+                console.log(array);
+                let count =1;
+                let max= array[0];
+                for(x of array){
+                    if(count == k) break;
+                    if(max > x){
+                        count++;
+                        max = x;
+                    }
+                }
+                answer = max;
+
+                return answer;
+            }
+            
+            let arr=[13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+            console.log(solution(10, 5, arr));
+        </script>
+        
+    </body>
+</html>
