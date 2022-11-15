@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            //sqrt = > 제곱근을 구하는 공식
+            // 소수는 1과 자기자신을 제외하고 
+            //그 사이 어떠한 숫자를 나눠도 나머지 수가 딱 떨어지지 않는 수
+            function primeNum (num){
+                if(num == 1 ) return false;
+                   for(let i = 2; i < parseInt(Math.sqrt(num)); i++ ){
+                        if(num%i == 0 ) return false;
+                   }
+                    return true;
+            }
+            function solution(arr){
+                let reverse = [];
+                for(x of arr){
+                    let xArr = parseInt((x.toString().split('').reverse()).join(''));
+                    if(primeNum(xArr)) reverse.push(xArr);     
+                }
+                return reverse;
+            }
+            
+            let arr=[32, 55, 62, 20, 250, 370, 200, 30, 100];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
+
+
