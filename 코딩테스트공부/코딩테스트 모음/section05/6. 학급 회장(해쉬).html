@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer, max = 1 , before = 0;
+                let arr = s.split('');
+                arr.sort();
+
+                for(let i =1; i<arr.length; i++){
+                    if(max > before){
+                        before = max;
+                        answer = arr[i-1];
+                    }
+                    max ++;
+                    if(arr[i] !== arr[i-1]) max=0;
+                }
+
+                
+                return answer;
+            }
+
+            let str="BACBACCACCBDEDEEEEE";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
