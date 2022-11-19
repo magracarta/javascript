@@ -8,8 +8,7 @@
             function compareMap(map1 , map2){
                 if(map1.size !== map2.size)return false;
                 for(let [key, val] of map1){
-                    if(!map2.has(key)) return false;
-                    if(val !== map2.get(key)) return false;
+                    if(!map2.has(key) || val !== map2.get(key)) return false;
                 }
                 return true;
             }
