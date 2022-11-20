@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(need, plan){
+                let answer = "YES";
+                let queque = need.split('');
+
+                for(let x of plan){
+                    if(queque.includes(x)){
+                        if(x !== queque.shift()) return 'NO';
+                    }
+                }
+                if(queque.length > 0) return 'NO';
+                return answer;
+            }
+
+            let a="CBA";
+            let b="CBDGAE";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>

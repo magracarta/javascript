@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, k){
+                let answer;
+                let array = Array.from({length:n} , (v,i) => i+1);
+                let count =0;
+                while( array.length > 1 ){
+                    let addNum = array.shift();
+                    count++;
+                    if(count==3) count=0;
+                    else  array.push(addNum);
+                }
+
+                return answer = array[0];
+                
+            }
+
+            console.log(solution(8, 3));
+        </script>
+    </body>
+</html>

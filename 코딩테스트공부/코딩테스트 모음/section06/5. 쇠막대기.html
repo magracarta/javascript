@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer=0;
+                let arr = s.split('');
+
+                for(let i =0; i<arr.length; i++){
+                    if(arr[i] == '(' && arr[i+1] == '(' ){
+                        answer++;
+                        let stack = [];
+                        for(let j = i; j < arr.length; j++){
+                            stack.push(arr[j]);
+                            if( arr[j] == ')' ){
+                                if(arr[j-1] == '(') answer++;
+                                stack.pop();
+                                stack.pop();  
+                            } 
+                            if(stack.length == 0) break; 
+                        }
+                        
+                    }
+                }
+                
+                return answer;
+            }
+            
+            let a="()(((()())(())()))(())";
+            console.log(solution(a));
+        </script>
+    </body>
+</html>
