@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(size, arr){
+                let answer = Array.from(Array(size), x => 0);
+                
+                arr.forEach((elem)=>{
+                    if(answer.includes(elem)){
+                        for(let i =0; i<answer.length; i++){
+                            if(elem == answer[i]){
+                                answer.splice(i,1);
+                            }
+                        }
+                        answer.unshift(elem);
+                    }else{
+                        answer.unshift(elem);
+                        answer.pop();
+                    }
+                });
+                return answer;
+            }
+
+            let arr=[1, 2, 3, 2, 6, 2, 3, 5, 7];
+            console.log(solution(5, arr));
+        </script>
+    </body>
+</html>
+
