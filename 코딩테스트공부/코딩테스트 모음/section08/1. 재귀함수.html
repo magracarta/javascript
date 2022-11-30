@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n){
+                function arrayFn(n){
+                    let array = [];
+                    for(let i =1; i <= n; i++ ){
+                        array.push(i);
+                    }
+                    return array.join(' ');
+                }
+                console.log(arrayFn(n));
+            }
+
+            solution(3);
+        </script>
+    </body>
+</html>
