@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(str){
+                let answer =[];
+               
+                for(x of str){
+                    let reverse =  parseInt(x.toString().split('').reverse().join(''));
+                    let yon = false;
+                    for(let i = Math.floor(reverse/2); i > 1; i--){
+                        if( reverse%i == 0 ) yon = true;
+                    }
+                    if(reverse == 1)yon = true;
+                    if(yon == false) answer.push(reverse);
+                }
+                
+
+                 return answer;
+            }   
+            
+            let str =[32, 55, 62, 20, 250, 370, 200, 30, 100];
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

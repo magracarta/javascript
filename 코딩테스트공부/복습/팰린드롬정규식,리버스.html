@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(str){
+                let answer ='yes';
+                let string = str.toLowerCase().replace(/[^a-z]/g,'');
+                
+                if(string !==string.split('').reverse().join('')) answer ='no'
+
+                 return answer;
+            }   
+            
+            let str ='found7, time: study; Yduts; emit, 7Dnuof';
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
