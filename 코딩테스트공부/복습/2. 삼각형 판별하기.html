@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+                let answer = 'yse';
+                let array = [a,b,c];
+                let sum = a+b+c , max = Number.MIN_SAFE_INTEGER;
+                for(let i=0; i<array.length; i++){
+                    if(array[i]> max) max = array[i];
+                }
+
+
+                if(sum - max < max) return answer = 'no' 
+
+                return answer
+            }
+
+            console.log(solution(13, 33, 17));
+        </script>
+    </body>
+</html>
