@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function filterFn(aSh,bSh){
+                if(aSh.size !== bSh.size) return false;
+
+                for(let [key, value] of bSh){
+                    if(value !== aSh.get(key)) return false;
+                    // console.log(bSh.get(key), key);
+                }
+                return true;
+            }
+            function solution(a,b){
+                let answer = 0;
+                let aSh = new Map();
+                let bSh = new Map();
+
+                for(x of b){
+                    if(bSh.has(x)) bSh.set(x, bSh.get(x)+1);
+                    else bSh.set(x,1);
+                }
+
+                for(let i =0; i< b.length; i++){
+                    if(aSh.has(a[i])) aSh.set(a[i],aSh.get(a[i]+1));
+                    else aSh.set(a[i],1);
+                    if(filterFn(aSh,bSh) == true){
+                        answer++;
+                    }
+                    // console.log(aSh , answer);
+                }
+                
+                let p1=0;
+                for(let p2 =b.length; p2< a.length; p2++){
+                    
+                    if(aSh.has(a[p2])) aSh.set(a[p2], aSh.get(a[p2])+1);
+                    else  aSh.set(a[p2], 1);
+                    aSh.set(a[p1], aSh.get(a[p1])-1);
+                    if(aSh.get(a[p1]) <= 0 ){ aSh.delete(a[p1]); }
+                    if(filterFn(aSh,bSh) == true){
+                        answer++;
+                    }
+                    p1++;
+                    // console.log(aSh ,bSh , answer);
+                }
+
+                return answer;
+            }   
+           
+            let a ="bacaAacba";
+            let b ="abc";
+            console.log(solution(a,b));
+        </script>
+    </body>
+</html>

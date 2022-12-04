@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a,b){
+                let answer = [];
+                let an = a.length;
+                let bn = b.length;
+                let lp =  rp = 0;
+                while(lp < an || rp < bn){
+                    if(a[lp] <= b[rp]) answer.push(a[lp++]);
+                    else answer.push(b[rp++]);
+                }
+                
+               
+                return answer;
+            }   
+           
+            let a =[1 ,3 ,5];
+            let b =[2, 3, 6, 7, 9];
+            console.log(solution(a,b));
+        </script>
+    </body>
+</html>

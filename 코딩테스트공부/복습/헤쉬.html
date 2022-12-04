@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a){
+                let answer = "";
+                let max = Number.MIN_SAFE_INTEGER;
+                // 키와 벨류값을 가진 객체를 생성 
+                // has, set. get(벨류값 얻어내기)
+                let hs = new Map();
+
+                for(x of a){
+                    if(hs.has(x)){
+                        hs.set(x,hs.get(x)+1);
+                    }else{
+                        hs.set(x,1);
+                    }
+                }
+                
+                let arr = [...hs];
+                
+                for(let i =0; i < arr.length; i++){
+                    if(arr[i][1] > max){
+                        max = arr[i][1];
+                        answer = arr[i][0];
+                    }
+                }
+
+                return answer;
+            }   
+           
+            let a ="BACBACCACCBDEDE";
+            console.log(solution(a));
+        </script>
+    </body>
+</html>

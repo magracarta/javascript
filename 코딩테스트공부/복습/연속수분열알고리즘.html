@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a,t){
+                let answer = 0 , sum =0;
+                let p1 =0, p2 =0;
+                
+                for(let p2 = 0; p2 < a.length; p2++){
+                    sum += a[p2];
+                    if(sum === t) answer++;
+                    if(sum >= t){
+                        sum -= a[p1++];
+                        if(sum === t) answer++;
+                    }
+                }
+                
+                return answer;
+            }   
+           
+            let a =[1, 2, 1, 3, 1, 1, 1, 2];
+            console.log(solution(a,6));
+        </script>
+    </body>
+</html>

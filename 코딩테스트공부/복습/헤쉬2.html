@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a,b){
+                let answer = "yes";
+                let aHs = new Map();
+                let bHs = new Map();
+                
+                for(let i =0; i< a.length; i++){
+                    if(aHs.has(a[i])) aHs.set(a[i],aHs.get(a[i])+1);
+                    else aHs.set(a[i], 1);                   
+                }
+                for(let i =0; i< b.length; i++){
+                    if(bHs.has(b[i])) bHs.set(b[i],bHs.get(b[i])+1);
+                    else bHs.set(b[i], 1);
+                }
+
+                aHs = [...aHs];
+                bHs = [...bHs];
+
+                aHs.sort((a,b)=>{ return a[0].charCodeAt() - b[0].charCodeAt() });
+                bHs.sort((a,b)=>{ return a[0].charCodeAt() - b[0].charCodeAt() });
+
+                if(aHs.length !== bHs.length ) answer = "no";
+                for(let i =0; i < aHs.length; i++){
+                    if(aHs[i][0] !== bHs[i][0]) answer = "no";
+                    else{
+                        if(aHs[i][1] !== bHs[i][1])answer = "no";
+                    }
+                }
+
+                return answer;
+            }   
+           
+            let a ="AbaAeCe";
+            let b ="baeeACAf";
+            console.log(solution(a,b));
+        </script>
+    </body>
+</html>
