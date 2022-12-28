@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- 
+        async => 원하는 요소가 정의되어있지 않을수도있다. 
+        파싱하는 동안 언제든지 작동 가능 정의된 순서에 상관없이 병렬적으로 다운받은대로 실행
+        순서의 의존이 필요하면 사용 x 
+        조작하는 시점이 정의 안되면 문제 
+        빠르게 실행가능
+    -->
+    <!-- <script async src="main.js"></script> -->
+
+    <!-- 
+        defer => 먼저 js를 다운받고 HTML모두 실행후 실행 
+        이미 다운 로드 후 순서대로 실행
+    -->
+    <script defer src="main.js"></script>
+</head>
+<body>
+    <div></div>
+    <!-- 
+        Application Programing Interface
+        : API -> 자바스크립트 언어에 포함된게 아닌 브라우저가 이해할수 있는 함수들
+     -->
+</body>
+</html>
