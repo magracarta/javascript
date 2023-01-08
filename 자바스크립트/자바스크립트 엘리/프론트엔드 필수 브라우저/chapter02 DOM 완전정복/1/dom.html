@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      body {
+        background-color: black;
+        text-align: center;
+      }
+      section {
+        width: 50%;
+        margin: 50px auto;
+        background-color: brown;
+        border-radius: 20px;
+        padding: 20px;
+      }
+      img {
+        z-index: 100;
+        will-change: opacity; /* 레이어를 분리한다. */
+      }
+      h1,
+      h3,
+      span {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <img src="img/avatar.png" alt="avatar" />
+      <h1 id="brand">Dream Coding</h1>
+      <h3>Don't forget to code your dream</h3>
+    </section>
+    <span>Hello World!</span>
+  </body>
+</html>
+<script>
+  // const image = document.querySelector('img');
+  // const image = document.querySelector('img[src="img/avatar.png"]');
+  const section = document.querySelector('section');
+  const h2 = document.createElement('h2');
+  h2.setAttribute('class', 'title');
+  h2.textContent = 'this is a title';
+  const h3 = document.querySelector('h3');
+  // section.appendChild(h2);
+  section.insertBefore(h2,h3); //사이에 껴넣을수 있음
+  section.removeChild(h2);
+</script>
