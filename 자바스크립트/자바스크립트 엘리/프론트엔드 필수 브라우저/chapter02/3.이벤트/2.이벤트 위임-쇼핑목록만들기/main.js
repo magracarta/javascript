@@ -1,8 +1,12 @@
 const items = document.querySelector('.items');
 const input = document.querySelector('.footer_input');
 const addBtn = document.querySelector('.footer_button');
+const form = document.querySelector('.new_form');
 
-
+form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    onAdd();
+});
 function onAdd(){
     
     //1. 사용자가 입력한 텍스트를 받아옴.
@@ -21,43 +25,39 @@ function onAdd(){
     input.value = '';
     input.focus();
 }
-
+let id =0; //UUID
 function createItem(text){
     const itemRow = document.createElement('li');
     itemRow.setAttribute('class','item_row');
-
-    const item = document.createElement('div');
-    item.setAttribute('class','item');
-
-    const name = document.createElement('span');
-    name.setAttribute('class','item_name');
-    name.innerText = text;
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.setAttribute('class','item_delete');
-    deleteBtn.innerHTML = `<i class="fa fa-trash"></i>`;
-
-    deleteBtn.addEventListener('click', ()=>{
-        items.removeChild(itemRow);
-    });
-
-
-    const itemDivider = document.createElement('div');
-    itemDivider.setAttribute('class','item_dvider');
-
-    item.appendChild(name);
-    item.appendChild(deleteBtn);
-
-    itemRow.appendChild(item);
-    itemRow.appendChild(itemDivider);
-
-    return itemRow
+    itemRow.setAttribute('data-id',id);
+    itemRow.innerHTML = `
+            <div class="item" >
+                <span class="item_name">${text}</span>
+                <button class="item_delete">
+                    <i class="fa fa-trash" data-id = ${id}></i>
+                </button>
+            </div>
+            <div class="item_dvider"></div>
+    `;
+    
+    id++;
+    return itemRow;
 }
 
-addBtn.addEventListener('click',()=>{
-    onAdd();
-});
+// addBtn.addEventListener('click',()=>{
+//     onAdd();
+// });
 
-input.addEventListener('keypress', (e)=>{
-    if(e.charCode == 13) onAdd();
-})
+// input.addEventListener('keydown', (e)=>{
+//     if(e.isComposion){ //글자가 다 만들어질때까지 엔터 안되게(한글같을거에서..사용)
+//         return;
+//     }
+//     if(e.key == 'Enter') onAdd();
+// })
+items.addEventListener('click', event=>{
+    const id =event.target.dataset.id;
+    if(id){
+        const tobeDeleted = document.querySelector(`.item_row[data-id="${id}"]`);
+        tobeDeleted.remove();
+    }
+});
