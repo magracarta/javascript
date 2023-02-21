@@ -1,5 +1,11 @@
 import * as sound from './sound.js';
-import Field from "./field.js";
+import  { Field, ItemType } from "./field.js";
+
+export const Reason = Object.freeze({
+    win:'win',
+    lose:'lose',
+    cancel: 'cancel',
+});
 
 //Builder Pattern
 export default class GameBuilder{
@@ -36,12 +42,11 @@ class Game {
         this.gameBtn = document.querySelector('.game__button');
         this.gameBtn.addEventListener('click', () => {
             if (this.started) {
-                this.stop();
+                this.stop(Reason.cancel);
             } else {
                 this.start();
             }
         });
-
 
         this.gamefield = new Field(carrotCount ,bugCount);
         this.gamefield.setClickListner(this.onItemClick);
@@ -49,23 +54,21 @@ class Game {
         this.started = false;
         this.score = 0;
         this.timer = undefined;
-
     }
-
     
 
      onItemClick = (item)=>{
         if (!this.started) {
           return;
         }
-        if (item ==='carrot') {
+        if (item === ItemType.carrot) {
          this.score++;
             this.updateScoreBoard();
             if(this.score === this.carrotCount) {
-                this.finish(true);
+                this.stop(Reason.win);
             }
-        } else if (item ==='bug') {
-            this.finish(false);
+        } else if (item === ItemType.bug) {
+            this.stop(Reason.lose);
         }
     }
 
@@ -81,30 +84,15 @@ class Game {
         sound.playBackground();
       }
       
-    stop() {
+    stop(reason) {
         this.started = false;
         this.stopGameTimer();
         this.hideGameButton();
-        sound.playAlert();
         sound.stopBackground();
-        this.onGameStop && this.onGameStop('cancel');
+    
+        this.onGameStop && this.onGameStop(reason);
     }
 
-      
-
-    finish(win) {
-        this.started = false;
-        this.hideGameButton();
-        if (win) {
-            sound.playWin();
-        } else {
-            sound.playBug();
-        }
-        this.stopGameTimer();
-        sound.stopBackground();
-        this.onGameStop && this.onGameStop(win? 'win': 'lose');
-    }
-  
 
         
     showStopButton() {
@@ -129,7 +117,7 @@ class Game {
         this.timer = setInterval(() => {
         if (remainingTimeSec <= 0) {
             clearInterval(this.timer);
-            this.finish(this.score === this.carrotCount);
+            this.stop(this.score === this.carrotCount? Reason.win:Reason.lose);
             return;
         }
         this.updateTimerText(--remainingTimeSec);
