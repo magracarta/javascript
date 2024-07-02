@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="loginform">
+        <label>id</label>
+        <input type="text" name="userid" placeholder="userid"><br>
+        <label>pwd</label>
+        <input type="password" name="pwd" placeholder="pwd">
+        <button type="submit">전송</button>
+        <div class="msg"></div>
+    </form>
+</body>
+</html>
+<script>
+document.querySelector("form").addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    let formdate = new FormData(e.target);
+    let jsonData  = {};
+    formdate.forEach((value, key)=>jsonData[key] = value);
+    try{
+        let data = await postserver("/login",jsonData);
+        if(data.msg !="ok") document.querySelector(".msg").innerHTML = data.msg;
+        else location.href="/";
+    }catch(error){
+        console.error('Error', error);
+    };
+});
+
+ function postserver(link, formdate){
+    return new Promise((resolve,reject) =>{
+        fetch(link, {
+            method:"POST",
+            headers:{"Content-type":"application/json"},
+            body:JSON.stringify(formdate)
+        }).then(response=>{
+            if(!response.ok) throw new Error('error ' + response.statusText);
+            return response.json();
+        }).then(data=>{resolve(data);}).catch(data =>{ reject(data);});
+    });
+}
+
+</script>
