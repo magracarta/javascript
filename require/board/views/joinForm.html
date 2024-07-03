@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>joinForm.html</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="/board.css" rel="stylesheet">
+</head>
+<body>
+    <form name="join" class="login-form" method="post">
+        <h2>Join</h2>
+        <div class="field">
+            <label>User ID</label>
+            <input style="flex:2" type="text" name="userid" id="userid" data-value="아이디를">
+            <input style="flex:1"  type="button" value="ID Check" id="idcheck" />
+            <span style="flex:1" id="idok"></span>
+            <input type="hidden" name="reid" id="reid" >
+        </div>
+        <div class="field"><label>Password</label><input type="password" name="pwd" id="pwd" data-value="비밀번호를"></div>
+        <div class="field"><label>Retype Pw</label><input type="password" name="pwd_check" id="pwd_check" data-value="비밀번호 확인을"></div>
+        <div class="field"><label>name</label><input type="text" name="name" id="name"  data-value="이름을"></div>
+        <div class="field"><label>Email</label><input type="text" name="email" id="email" data-value="이메일을"></div>
+        <div class="field"><label>Phone</label><input type="text" name="phone" id="phone" data-value="전화번호를"></div>
+        <div class="field"><label id="message"></label></div>
+        <div class="login-button">
+            <input type="submit" class="btn-login" value="Join" />
+            <input type="button" class="btn-login" value="Back" onClick="location.href='/'"/>
+        </div>
+    </form>
+    
+    <script type="text/javascript">
+        const form =  document.join;
+        document.querySelector("#idcheck").addEventListener('click',async (e)=>{
+            const userid =form.userid.value;
+            if(!userid) return alert("조회할 아이디를 입력하세요.");
+            try{
+                const formDate = new FormData();
+                formDate.append("userid",userid);
+                const result = await postfetch("/member/idcheck" ,formDate);
+                const id = result.id;
+                if(id != userid){
+                    document.getElementById("idok").innerHTML = "사용가능합니다.";
+                    document.getElementById("idok").style.color = "blue";
+                    document.getElementById("reid").value=userid;
+                }else{
+                    document.getElementById("idok").innerHTML="사용중";
+                    document.getElementById("idok").style.color = "red";
+                    document.getElementById("reid").value=userid;
+                }
+            }catch(err){
+                console.error(err);
+            }
+        });
+
+
+        document.querySelector("form").addEventListener("submit", async(e)=>{
+            e.preventDefault();
+           try{ 
+                await validation( e.target.querySelectorAll("input")) ; 
+                const result = await postfetch("/member/join", new FormData(e.target) );
+                alert(result.msg);
+                location.href="/";
+           }catch(err){ console.log(err); }
+           
+        });
+
+        function validation(target){
+            target.forEach((elem)=>{
+                if(elem.type == "button" || elem.type == "submit") return false;
+                if(elem.value ==""){
+                    if(elem.name == "reid" && elem.value != document.join.userid.value) alertError("아이디중복 확인을 해주세요.");
+                    elem.focus();
+                    alertError(elem.dataset.value+"입력하세요.");
+                }
+                if(elem.name == "pwd_check" && elem.value != document.join.pwd.value) alertError("비밀번호체크와 비밀번호가 다릅니다. 확인 해주세요.");
+            });
+        }
+
+        function postfetch(link, dataForm){
+            let dataObj = {};
+            dataForm.forEach((value, key)=>{
+                dataObj[key] = value;
+            });
+            return new Promise((resolve, reject)=>{
+                fetch(link,({
+                    method:'POST',
+                    headers:{"Content-Type":"application/json"},
+                    body: JSON.stringify(dataObj)
+                })).then(response => { if(response.ok) return response.json(); }).then(data=> resolve(data)).catch(data=>reject(data));
+            });
+
+        }
+
+        function alertError(text){
+            alert(text);
+            throw new Error("stop loop");
+        }
+    </script>
+</body>
+</html>
