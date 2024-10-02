@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        function solution(s){
+            let answer="";
+            for(x of s){
+                if(x == "A") answer += "#";
+                else answer += x;
+            }
+            return answer;
+        }
+        let str="BANANA";
+        console.log(solution(str));
+    </script> -->
+    <script>
+        function solution(s){
+            return s.replaceAll("A","#");
+        }
+        
+        let str="BANANA";
+        console.log(solution(str));
+    </script>
+</body>
+</html>
