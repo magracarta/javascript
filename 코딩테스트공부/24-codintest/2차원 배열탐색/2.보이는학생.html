@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(arr){         
+            let answer=0;
+            let rdc = arr.reduce((total, el)=>{
+                if(total < el){
+                    answer++;
+                    total = el;
+                }
+                return total;
+            },0);
+            
+            return answer;
+        }
+
+        let arr=[130, 135, 148, 140, 145, 150, 150, 153];
+        console.log(solution(arr));
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(arr){  
+            let count = 0;
+            let obj = [...arr].sort((a,b)=>b-a).reduce((total, el)=>{
+                count++;
+                if(!total[el])total[el]=count;
+                return total;
+            },{});
+
+            return arr.map((el)=>{return obj[el]});
+        }
+
+        let arr=[87, 89, 92, 100, 76];
+        console.log(solution(arr));
+    </script>
+</body>
+</html>
