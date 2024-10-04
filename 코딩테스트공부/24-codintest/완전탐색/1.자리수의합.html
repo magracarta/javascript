@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(n, arr){
+            let answer=0;
+            let maxsum =0;
+            for(let i = 0; i < arr.length; i++){
+                let sum = String(arr[i]).split("").reduce((t,e)=>t+Number(e),0);
+                if(maxsum <= sum){
+                    maxsum = sum;
+                    if(answer < arr[i]) answer= arr[i];
+                }
+            }
+            return answer;
+        }
+        
+        let arr=[128, 460, 603, 40, 521, 137, 123];
+        console.log(solution(7, arr));
+    </script>
+</body>
+</html>

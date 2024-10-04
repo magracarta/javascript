@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(s){
+            let answer="";
+            let rdc = s.split("").reduce((t,e)=>{
+                t[e] ? t[e]++ : t[e]=1;
+                return t;
+            },{});
+            
+            let set = new Set(s);
+            let arr = [...set]
+            
+            for(x of arr){
+                answer += x;
+                if(rdc[x]!=1) answer+=(rdc[x]);
+            }
+            return answer;
+        }
+        
+        let str="KKHSSSSSSSE";
+        console.log(solution(str));
+    </script>
+</body>
+</html>

@@ -9,13 +9,22 @@
     <script>
         function solution(s, t){
             let answer=[];
-            let arr = s.split("");
-            let rearr =s.split("").reverse();
 
+            for(let i =0; i<s.length; i++){
+                let count = 0;
+                if(s[i]==t){
+                    answer.push(count);
+                    continue;
+                }
+                while(true){
+                    count++
+                    if(s[i-count] == t || s[i+count] == t){
+                        break;
+                    }
+                }
+                answer.push(count);
+            }
             
-            
-
-
             return answer;
         }
         
