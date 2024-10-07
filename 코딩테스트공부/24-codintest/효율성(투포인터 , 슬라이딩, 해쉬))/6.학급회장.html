@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function solution(s){  
+        //     let answer;
+        //     let rdc = s.split("").reduce((total, el)=>{
+        //         total[el] ? total[el]++ : total[el]=1;
+        //         return total;
+        //     },{});
+        //     let sum = 0;
+        //     for(x in rdc){
+        //         if(sum < rdc[x]){
+        //             sum = rdc[x]
+        //             answer = x;
+        //         }
+        //     }
+
+        //     return answer;
+        // }
+
+        // let str="BACBACCACCBDEDE";
+        // console.log(solution(str));
+    </script>
+    <script>
+        function solution(s){  
+            let answer;
+            let sH = new Map();
+
+            for(let x of s){
+                if(sH.has(x)) sH.set(x, sH.get(x)+1);
+                else sH.set(x,1);
+            }
+            let max = Number.MIN_SAFE_INTEGER;
+            for(let [key,val] of sH){
+                if(val > max){
+                    max = val;
+                    answer= key;
+                }
+            }
+            return answer;
+        }
+
+        let str="BACBACCACCBDEDE";
+        console.log(solution(str));
+    </script>
+</body>
+</html>
