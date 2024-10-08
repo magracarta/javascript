@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(s){  
+            let stack =[];
+           
+            for(x of s){
+                if(Number(x)) stack.push(Number(x));
+                else{
+                    let p1 = stack.pop();
+                    let p2 = stack.pop();
+                    if(x == "/") stack.push(p2/p1);
+                    else if(x == "*") stack.push(p2*p1);
+                    else if(x == "+") stack.push(p2+p1);
+                    else if(x == "-") stack.push(p2-p1);
+                }
+            }
+
+            return stack[stack.length-1];
+        }
+
+        let str="352+*9-";
+        console.log(solution(str));
+    </script>
+</body>
+</html>

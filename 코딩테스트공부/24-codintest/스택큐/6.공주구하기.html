@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(n, k){
+            let arr = Array.from({length:n},(v,i)=>i+1);
+            let count = 1;
+
+            while(arr.length > 1){
+                let a1 = arr.shift();
+                if(count==3) count = 0;
+                else arr.push(a1);
+                count++;
+            }
+
+            return arr.join("");
+        }
+
+        console.log(solution(8, 3));
+    </script>
+</body>
+</html>
