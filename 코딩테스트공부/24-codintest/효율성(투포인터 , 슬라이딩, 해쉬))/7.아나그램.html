@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(str1, str2){
+            let answer="YES"; 
+            let map  = new Map();
+            str1.split("").forEach((elem)=>{
+                if(map.has(elem)) map.set(elem,map.get(elem)+1);
+                else map.set(elem,1);
+                return map;
+            });
+
+            for(x of str2){
+                if(map.has(x)){
+                    let xcount = map.get(x)-1;
+                    if(xcount < 0) return "NO";
+                    else map.set(x,xcount);
+                }else answer = "NO";
+            }
+
+            for(x of str1){
+                if(map.get(x) !==0) return "NO";
+            }
+
+
+            console.log(map);
+            return answer;
+        }
+        
+        let a="AbaAeCe";
+        let b="baeeACA";
+        console.log(solution(a, b));
+    </script>
+</body>
+</html>

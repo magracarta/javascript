@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(s){
+            let answer="YES";
+            let arr = [];
+
+            for(x of s){
+                if(x == ")"){
+                    if(arr.length ==0) return "NO";
+                    arr.pop();
+                }else arr.push("(");
+                
+            }
+
+            if(arr.length > 0) answer = "NO";
+            return answer;
+        }
+        
+        let a="(()(()))(()";
+        console.log(solution(a));
+    </script>
+</body>
+</html>
