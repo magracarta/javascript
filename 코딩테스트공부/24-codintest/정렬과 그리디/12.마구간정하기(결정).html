@@ -8,32 +8,31 @@
 <body>
     <script>
         function count(arr , mid ){
-           let cnt =1, ep = arr[0];
-           
-           for(let i =1; i < arr.length; i++){
-                if(arr[i] - ep >= mid){
-                    cnt++;
-                    ep=arr[i];
-                }
+           let count = 1;
+           let start = arr[0];
+           for(x of arr){
+            if((x - start) >= mid){
+                start = x;
+                count++;
             }
-     
-           return cnt;
+           }
+           return count;
         }
        
         function solution(c, stable){
-           let answer;
-           stable.sort((a,b)=> a-b);
-           let lt = 1;
-           let rt = stable[stable.length-1];
-
-           while(lt <= rt){
-                let mid = parseInt((lt+rt)/2);
-                if(count(stable,mid) >= c){
+            let answer;
+            stable.sort((a,b)=>a-b);
+            let lt = stable[0], rt = stable[stable.length-1];
+            while(lt < rt){
+                let mid = parseInt((lt + rt)/2);
+                console.log("mid"+mid);
+                if(count(stable, mid) >= c){
+                    lt = mid+1;
                     answer = mid;
-                    lt =mid+1;
-                }else rt = mid-1;
-           }
-            
+                }else{
+                    rt = mid-1;
+                }
+            }
             return answer;
         }
         
