@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(c, arr){
+                let answer=0;
+                let maxW = 0 , n = arr.length;
+                let total = arr.reduce((a,b)=>a+b);
+                
+                // function DFS(L,sum){
+                //     if(L >= n){
+                //         let minus = total-sum;
+                //         if(minus <= c && maxW <= minus) maxW = minus;
+                //     }else{
+                //         DFS(L+1, sum+arr[L]);
+                //         DFS(L+1, sum);
+                //     }
+                // }
+                
+                function DFS(L, sum){
+                    if(sum > c) return;
+                    if(L === n){
+                        answer = Math.max(answer,sum);
+                    }else{
+                        DFS(L+1, sum+arr[L]);
+                        DFS(L+1, sum);
+                    }
+                }
+                DFS(0,0);
+                return answer;
+            }
+
+            let arr=[81, 58, 42, 33, 61];
+            console.log(solution(259, arr));
+        </script>
+    </body>
+</html>
