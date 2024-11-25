@@ -10,9 +10,9 @@
 
                 function DFS(L, sum){
                     if(sum > m) return;
-                    if(L >= answer) return;
+                    // if(L >= answer) return;
                     if(sum == m){
-                        console.log(L,sum);
+                        // console.log(L,sum);
                         answer = Math.min(answer, L);
                     }else{
                         for(let i=0; i<arr.length; i++){
