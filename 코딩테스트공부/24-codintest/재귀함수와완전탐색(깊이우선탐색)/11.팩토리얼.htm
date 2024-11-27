@@ -9,7 +9,10 @@
                 let answer;
                function DFS(n){
                 if(n === 1 ) return 1;
-                else return n*DFS(n-1);
+                else{
+                    // console.log(DFS(n-1));
+                    return n*DFS(n-1);
+                }
                }
                answer = DFS(n);
                 return answer;
@@ -18,3 +21,11 @@
         </script>
     </body>
 </html>
+<!-- 
+5* (5-1)                      ---------6스택
+    4 * (4-1)                 ---------5스택
+        3 * (3-1)             ---------3스택
+                2 * (2-1)     ---------2스택
+                    1         ---------1스택
+                
+                -->
