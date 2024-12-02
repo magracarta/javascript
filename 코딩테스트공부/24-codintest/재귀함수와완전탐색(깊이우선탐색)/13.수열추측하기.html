@@ -5,7 +5,7 @@
     </head>
     <body>
         <script>
-            function solution(n, f){         
+            function solution(n, f){    
                 let answer , flag=0;
                 let dy = Array.from(Array(11),()=> Array(11).fill(0));
                 let ch = Array.from({length:n+1}, ()=>0);
@@ -41,6 +41,8 @@
                
                 DFS(0,0);
 
+
+              
                 return answer;
             }
 
