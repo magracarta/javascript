@@ -18,8 +18,8 @@
                     let left= arr[i][j-1] ? arr[i][j-1] : 0;
                     let right= arr[i][j+1] ? arr[i][j+1] : 0;
                     
-                    if(curr == max){
-                        console.log(curr,bottom,top,left,right);
+                    if(curr == Math.max(curr,top,bottom,left, right)){
+                        
                         answer++;
                     } 
                    
