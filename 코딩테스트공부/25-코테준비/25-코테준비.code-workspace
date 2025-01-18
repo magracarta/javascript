@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../강의자료"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "25-코테준비"
+	}
+}
