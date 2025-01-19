@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캐시</title>
+</head>
+<body>
+    <script>
+        function solution(cacheSize, cities) {
+            var answer = 0;
+            //stack으로 처리 하는데 캐시의 크기 3 
+            //교체 알고리즘 ->LRU 
+            //캐시 배열
+            let casharr = new Array(cacheSize).fill(0);
+            
+            //cities의 배열을 돌려
+            for(x of cities){
+                x = x.toLowerCase();
+                //같은 자료가 없을때
+                if(!casharr.includes(x)){
+                    casharr.shift();
+                    casharr.push(x);
+                    answer+=5;
+                }else{
+                    //해당자료에서 같은 자료가 있을 때
+                    let saveindex = casharr.indexOf(x);
+                    //현재 위치에서 값을 빼내고 다시 재정렬
+                    for(let j = saveindex; j < casharr.length-1; j++){
+                        casharr[j] =casharr[j+1];
+                    } 
+                    casharr[cacheSize-1] = x;
+                    answer+=1;
+                }
+            }
+            
+            
+            if(cacheSize ==0) answer = cities.length*5;
+            return answer;
+        }
+    </script>
+</body>
+</html>

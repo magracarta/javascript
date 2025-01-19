@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(need, plan){
+            let narr = need.split("");
+            for(x of plan){
+                if(narr[0] == x) narr.shift();
+            }
+            if(narr.length > 0) return "NO";
+            else return "YES";
+        }
+
+        let a="CBA";
+        let b="CBDAGE";
+        console.log(solution(a, b));
+    </script>
+</body>
+</html>
