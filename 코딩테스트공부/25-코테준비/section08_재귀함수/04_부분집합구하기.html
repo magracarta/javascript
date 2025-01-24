@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(n){
+            let answer=[];
+            let checkarr = new Array(n).fill(false);
+            function DFS(L){
+                if(L > n){
+                    let arr = "";
+                    for(let i =0 ;  i < checkarr.length; i++){
+                        if(checkarr[i]) arr+= i +" "
+                    }
+                    arr = arr.trim();
+                    if(arr) answer.push(arr);
+                }else{
+                    checkarr[L]= true;
+                    DFS(L+1);
+                    checkarr[L]= false;
+                    DFS(L+1);
+                }
+            }
+            DFS(1);
+            return answer;
+        }
+
+        console.log(solution(3));
+    </script>
+</body>
+</html>
