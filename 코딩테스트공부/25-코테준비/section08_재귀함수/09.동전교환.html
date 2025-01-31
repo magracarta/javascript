@@ -1,0 +1,42 @@
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(m, arr){
+                let answer= Number.MAX_SAFE_INTEGER;
+                let n = arr.length;
+                //동전 거스름돈 횟수 (가장 적은 숫자로 주기)
+                //DFS기법으로
+                function DFS(L, sum){
+                    //총 sum 이 m보다 커지면 X
+                    //총 sum이 정확하게 m과 같아야함
+                    if(sum > m) return;
+                    //L이 answer보다 커지면 X
+                    //언제나 최솟값을 써야한다.
+                    if(L >= answer) return;
+                    //sum이 정확하게 m이랑 같을 때
+                    if(sum === m){
+                        //작은 횟수 비교
+                        answer = Math.min(answer, L);
+                    }else{
+                        //for문으로 DFS 반복해서 비교~
+                        //모든 깊이우선 탐색 해보는 것
+                       for(let i=0; i < n; i++){
+                            DFS(L+1, sum+arr[i]);
+                       }
+                    }
+                }
+
+                DFS(0,0);
+                return answer;
+            }
+
+            let arr=[1, 2, 5];
+            console.log(solution(15, arr));
+        </script>
+    </body>
+</html>
