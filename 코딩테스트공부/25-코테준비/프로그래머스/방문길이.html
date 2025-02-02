@@ -1,0 +1,35 @@
+<script>
+function solution(dirs) {
+    var answer = 0;
+    let x = 5, y =5;
+    let visited = new Set();
+    let directions = {
+        "U" :[0 , -1], 
+        "D" : [0, 1], 
+        "L" : [-1, 0],
+        "R" : [1 , 0]
+    }
+    for(str of dirs){
+        let [dx, dy] = directions[str];
+        let nx = x + dx , ny = y + dy;
+        if(nx >= 0 && nx <= 10  && ny >= 0 && ny <= 10){
+            let line1 = `${x},${y}-${nx},${ny}`;
+            let line2 = `${nx},${ny}-${x},${y}`;
+            if(!visited.has(line1) && !visited.has(line2)){
+                visited.add(line1);
+                visited.add(line2);
+                answer++;
+            }
+            x = nx;
+            y = ny;
+        }
+        
+    }
+    
+    
+    return answer;
+}
+
+
+
+</script>
