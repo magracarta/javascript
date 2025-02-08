@@ -1,0 +1,22 @@
+<script>
+    function solution(arr1, arr2) {
+        var answer = [];
+        let row = arr1.length;
+        let col = arr2[0].length;  
+    
+        for(let i =0; i < row; i++){
+            let arr = arr1[i];
+            let answerarr = [];
+            for(let j = 0; j < arr2[0].length; j++){
+                let sum =0;
+                for(let c = 0; c < arr.length; c++){
+                    sum+=(arr[c]*arr2[c][j]);
+                }
+                answerarr.push(sum);
+            }
+            answer.push(answerarr);
+        }
+        
+        return answer;
+    }
+</script>
