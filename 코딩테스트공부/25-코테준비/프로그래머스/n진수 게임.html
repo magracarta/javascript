@@ -1,0 +1,31 @@
+<script>
+    function solution(n, t, m, p) {
+    var answer = '';
+    // n 진법
+    // t 미리 구할 숫자의 갯수 4
+    // m 게임에 참가하는 인원 2
+    // p 튜브의 순서 1
+    
+    //10의 자리수가 넘어가면 1번자리수부터 끊어서 말해야함
+    let count =0; //숫자 올리기
+    let rotate = 0; //순서 돌리기
+    
+    //로테이션 횟수 t * (참가인원-1)  + p;
+    let totalrotate = (m*(t-1))+p;
+    //올라간 숫자 값 넣는곳
+    let arrcount = [0];
+    while(rotate <= totalrotate){
+        rotate++;
+        let value = arrcount.shift();
+        if((rotate%m == p) || (p==m &&rotate%m == 0) ){
+            answer+=value;
+        }
+        if(arrcount.length == 0){
+            // arrcount가 0일때는 숫자 업!
+            count++;
+            arrcount = count.toString(n).toUpperCase().split("").slice();
+        }
+    }
+    return answer;
+}
+</script>
