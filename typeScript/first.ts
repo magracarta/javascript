@@ -141,10 +141,174 @@
 
 // add(1,2);
 // add('1','2');
-// add(1,'2');
+// add(1,'2'); 
 
 
 //type a = string & number;
-type A = {hello : 'world'} & {zero : 'cho'};
+// type A = {hello : 'world'} & {zero : 'cho'};
 //and  이면 모든 속성이 다있어야 하고 | 는 둘중에 하나만 있어도 된다.
-const a : A = {hello:"world", zero:"cho" }
+// const a : A = {hello:"world", zero:"cho" }
+
+// type A = {a:string};
+// const a: A = {a:'hello'};
+
+
+// 타입을 상속하는 개념 & 는 상속하는 느낌으로 사용.
+// type Animal = {breath : true};
+
+// type Poyouryu =Animal& {breed:true };
+// type Human = Poyouryu& { think : true };
+// const zerocho : Human = {breath:true, breed:true, think:true};
+
+//  interface A {
+//     breath : true
+//  }
+
+//  interface B extends A {
+//     breed:true;
+//  }
+
+//  const b:B = { breath: true,breed:true };
+
+
+
+// 인터페이스는 중복해서 사용하면 그안에 값을 추가해서 사용할수 있음. 짱인데?
+// interface A {
+//     talk : ()=> void
+// }
+
+// interface A {
+//     eat: () => void;
+// }
+
+// const a:A = {talk(){} , eat (){}, shit(){}}
+
+
+// interface A {
+//     shit: () => void;
+// }
+
+//객체 리터럴에서 잉여 속성검사가 있다.
+// interface A {a:string}
+// const obj = { a:'hello', b:'world' };
+// const obj1 :A = obj;
+
+// function a(): void{
+//     // return undefined;
+//     return;
+// }
+
+
+
+// interface Human{
+//     talk : ()=> void;
+// }
+ 
+// const Human: Human = {
+//     talk() { return 'abc'; }
+// }
+
+// function a(callBack: () => void):void{
+//     //함수에서 사용하는 void 만 return 값이 있으면 오류
+//     // return '123';
+// }
+
+// a(()=>{return 'a'});
+
+
+// declare function forEach(arr: number[], callback: (el:number) => void): void;
+// let target: number []=[];
+
+// forEach([1,2,3], el => {target.push(el)});
+// forEach([1,2,3], el => target.push(el));
+
+
+
+
+//declare
+// 다른 파일에서 함수/변수가 선언되어있다는 것을 명시해주는것 (보증한다.) 왜냐 타입스크립트 파일 자체는 그게 있는지 없는지 모르기때문.
+
+
+// interface A {
+//     talk : ()=> void;
+//     talk2 : ()=> void;
+// }
+
+// const a: A = {
+//     talk(){ return 3 },
+//     talk2(){ return '3' },
+// }
+
+// const b = a.talk() as unknown as number;
+
+
+
+
+// const b : unknown = a.talk();
+// (b as A ).talk();
+// b.talk2();
+
+//unknown 타입의 예시 error 
+//원래 any 였는데 -> 바쓈
+// try {
+
+// }catch(error){
+//     (error as Error).message
+// }
+
+// 타입가드
+// unknown 일땐 as를 사용하면 안된다.
+// function numOrStr(a:number|number[]){
+//     // if(typeof  a === 'string'){
+//     //     a.split(',');
+//     // }else{
+//     //     a.toFixed(1);
+//     // }
+
+//     // if(typeof a === 'string'){
+//     //     a.charAt(3);
+//     // }
+//     // if(typeof a === 'boolean'){
+//     //     // a => never
+//     //     a.toString();
+//     // }
+
+//     if(Array.isArray(a)){
+//         a.concat(4);
+//     }else{
+//         a.toFixed(3);
+//     }
+// }
+// numOrStr(123);
+// numOrStr([1,2,3]);
+
+// class A {
+//     aaa(){}
+// }
+
+// class B {
+//     bbb(){}
+// }
+
+// function aOrB(param: A|B){
+//     if(param instanceof A){
+//         param.aaa();
+//     }
+// }
+
+
+// aOrB(new A());
+// aOrB(new B());
+
+
+type B = { type:'b',bbb:string };
+type C = { type:'c',bbb:string };
+type D = { type:'d',bbb:string };
+
+function typeCheck(a:B | C | D){
+    if(a.type ==='b'){
+        a.bbb;
+    }else if(a.type ==='c'){
+        a.type;
+    }
+}
