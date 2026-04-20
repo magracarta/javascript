@@ -301,14 +301,196 @@
 // aOrB(new B());
 
 
-type B = { type:'b',bbb:string };
-type C = { type:'c',bbb:string };
-type D = { type:'d',bbb:string };
+// type B = { type:'b',bbb:string };
+// type C = { type:'c',ccc:string };
+// type D = { type:'d',ddd:string };
 
-function typeCheck(a:B | C | D){
-    if(a.type ==='b'){
-        a.bbb;
-    }else if(a.type ==='c'){
-        a.type;
-    }
+// function typeCheck(a:B | C | D){
+//     if('bbb' in a){
+//         a.bbb;
+//     }else if(a.type ==='c'){
+//         a.ccc;
+//     }else{
+//         a.ddd;
+//     }
+// }
+
+
+// interface Cat {meow : number}
+// interface Dog {bow : number}
+
+// function CatOrDog (a: Cat | Dog) : a is Dog {
+//     //타입 판별을 직업 만든다.
+//     if((a as Cat).meow) {return false;}
+//     return true;
+// }
+
+// //타입을 구분해주는 커스텀 함수를 여러분이 직접 만들 수 있다.
+// const cat : Cat | Dog  = { meow : 3 }
+// if(CatOrDog(cat)){
+//     console.log(cat.meow);
+// }
+
+// if('meow' in cat){
+//     console.log(cat.meow);
+// }
+
+
+// //커스텀한 타입가드
+// function pet(a: Cat | Dog){
+//     if(CatOrDog(a)){
+//         console.log(a.bow);
+//     }
+//     if('meow' in a){
+//         console.log(a.meow);
+//     }
+// }
+
+
+//커스텀하게 타입가드...
+// const isRejected = (input: PromiseSettledResult<unknown>): input is PromiseRejectedResult => {
+//    return input.status === 'rejected'
+// };
+// const isFulfilled = <T>(input: PromiseSettledResult<T>): input is PromiseFulfilledResult<T> => {
+//   return  input.status === 'fulfilled'
+// };
+
+// // Promise -> Pending -> Settled
+
+// const promises = await Promise.allSettled([Promise.resolve('a'), Promise.resolve('b')]);
+
+// const errors = promises.filter((promises)=> promises.status === 'rejected');
+// // const errors = promises.filter(isRejected);
+
+// export{};
+
+
+// const x:{} = 'hello';
+// const y:Object = 'hi'; // {}, Object  모든타입.
+// const xx: object ='hi';
+// const yy : object = {hello : 'world'}; //object 지양, interface, type, class
+// const z: unknown = 'hi';
+
+// unknown  = {} | null | undefinded
+// any와 마찬가지로 모든 갑을 받을수 있다.
+// if(z){
+//     z;
+// }
+
+// interface ReadOnly {
+//     readonly a: string;
+//     b: string;
+// }
+
+// const readonly : ReadOnly = {a:'hello', b: 'world'};
+
+// readonly.a ='12';
+// readonly.b ='12';
+
+//인덱스 시그니처
+// interface A {
+//     [key: string] : string
+// }
+// const aaaa: A = {a:'hello', b:'world'};
+
+
+// type B = 'Human' | 'Mammal' | 'Animal';
+// type C = 'Human1' | 'Mammal2' | 'Animal3';
+
+// type A = {[key in B]:C};
+
+// const aaa:A = {Human: 'Human1', Mammal:'Mammal2', Animal:'Animal3'};
+
+
+// class A {
+//     private a : string = '123'; // 타입스크립트에서 제공하는 
+//     #b : number = 123; // 자바스크립트의 프라이빗
+//     method(){
+//         console.log(this.a, this.#b);
+//     }
+// }
+
+// type AA = A;
+// const a : A = new A('123');
+
+
+// interface A {
+//     readonly a : string;
+//     b: string;
+//     method():void;
+// }
+
+// class B implements A {
+//    private a :string = '123';
+//    protected b: string = 'world';
+//    c:string = 'wow';
+
+//    method(){
+//     console.log(this.a);
+//     console.log(this.b);
+//     console.log(this.c);
+//    }
+// }
+
+
+
+// class c extends B {
+//  method(){
+//     console.log(this.a);
+//     console.log(this.b);
+//     console.log(this.c);
+//    }
+
+// }
+
+// new c().a;
+// new c().b;
+// new c().c;
+
+
+//              public           protected       private
+// 클래스내부       O                   O              O
+// 인스턴스         O                   X              X
+// 상속클래스        O                   O              X
+
+// function abc(a:number, b?:number, c?: number){
+
+// }
+
+// abc(1);
+// abc(1,2);
+// abc(1,2,3);
+// abc(1,2,3,4);
+
+// let obj : {a:string, b?:string} = {a:'hello', b:'world'};
+// obj = {a:'hello'};
+
+
+
+// function add<T extends number | string , K extends string>(x:T, y:T):T {
+//     return x+y;
+// };
+
+// add(1,2);
+// add('1','2');
+// add('1',2);
+
+// function add<T extends string>(x: T, y: T): T { return x + y }
+// add(1, 2);
+// add('1', '2')
+
+// <T extends {...}> // 특정 객체
+// <T extends any[]> // 모든 배열
+// <T extends (...args: any) => any> // 모든 함수
+// <T extends abstract new (...args: any) => any> // 생성자 타입
+// <T extends keyof any> // string | number | symbol
+
+
+
+const a = (b:number=3, c:number=5)=>{
+    return '3';
 }
+
+const add= <T extends unknown> (x:T , y:T) => ({x,y});
+
+const result = add(1,2);
