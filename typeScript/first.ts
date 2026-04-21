@@ -487,10 +487,47 @@
 
 
 
-const a = (b:number=3, c:number=5)=>{
-    return '3';
+// const a = (b:number=3, c:number=5)=>{
+//     return '3';
+// }
+
+// const add= <T extends unknown> (x:T , y:T) => ({x,y});
+
+// const result = add(1,2);
+
+
+// interface Array<T>{
+//     forEach(callbackfn :(value:T, index:number, array: T[])=> void, thisArg?:any ):void;
+// }
+
+
+const a: Array<number> = [1,2,3];
+// a.forEach((value)=>{console.log(value);});
+// //콘솔의 1,2,3
+
+['1','2','3'].forEach((value)=>{console.log(value);});
+// [true, true, true].forEach((value)=>{console.log(value);});
+// [true, '1', 3].forEach((value)=>{console.log(value);});
+
+
+
+// function add<T>(x:T, y:T){
+
+// }
+
+// // add(1,'2');
+// // add('1',1);
+//  add(1,1);
+// // 
+
+// const strings = [1,2,2].map((item)=>item+1);
+
+interface Array<T>{
+    forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
+    map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
+    filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[];
+    filter(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): T[];
 }
 
-const add= <T extends unknown> (x:T , y:T) => ({x,y});
-
-const result = add(1,2);
+const predicate = (value: string|number):value is string => typeof value == 'string';
+// const filterd = ['1', 2, 3, '4', 5].filter((value) => typeof value ==='string' );
