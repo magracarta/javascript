@@ -530,4 +530,5 @@ interface Array<T>{
 }
 
 const predicate = (value: string|number):value is string => typeof value == 'string';
-// const filterd = ['1', 2, 3, '4', 5].filter((value) => typeof value ==='string' );
+const filterd = ['1', 2, 3, '4', 5].filter(predicate );
+
