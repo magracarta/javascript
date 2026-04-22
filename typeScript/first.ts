@@ -501,11 +501,11 @@
 // }
 
 
-const a: Array<number> = [1,2,3];
+// const a: Array<number> = [1,2,3];
 // a.forEach((value)=>{console.log(value);});
 // //콘솔의 1,2,3
 
-['1','2','3'].forEach((value)=>{console.log(value);});
+// ['1','2','3'].forEach((value)=>{console.log(value);});
 // [true, true, true].forEach((value)=>{console.log(value);});
 // [true, '1', 3].forEach((value)=>{console.log(value);});
 
@@ -522,13 +522,121 @@ const a: Array<number> = [1,2,3];
 
 // const strings = [1,2,2].map((item)=>item+1);
 
-interface Array<T>{
-    forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
-    map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
-    filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[];
-    filter(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): T[];
+// interface Array<T>{
+//     forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
+//     map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
+//     filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[];
+//     filter(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): T[];
+// }
+
+// const predicate = (value: string|number):value is string => typeof value == 'string';
+// const filterd = ['1', 2, 3, '4', 5].filter(predicate );
+
+
+
+// interface Arr<T>{
+//     forEach(callBack: (item: T)=> void): void;   
+//         forEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
+// }
+
+// const a : Arr<boolean> = [true,false,true];
+// a.forEach((item) => {
+//     console.log(item);
+//     item.toFixed(1);
+// });
+
+// a.forEach((item)=>{
+//     console.log(item);
+//     return '3';
+// });
+
+
+// const b : Arr<string> = ['1','2','3'];
+// b.forEach((item) => {
+//     console.log(item);
+//     item.charAt(3);
+// });
+
+// b.forEach((item)=>{
+//     console.log(item);
+//     return '3';
+// });
+
+// interface Arr<T>{
+//     forEach(callBack: (item: T)=> void): void;   
+//     map<S>(callBack: (v:T,i:number)=> S): S[];
+//     filter<S extends T>(callBack: (v:T)=> v is S) : S[];
+    
+// }
+
+// const a:Arr<number> = [1,2,3];
+// // const b = a.map((v,i)=> v+1);
+// // const c = a.map((v,i)=> v.toString()); 
+// // const d = a.map((v,i)=> v%2 ===0); 
+
+// const b = a.filter((v): v is number=> v%2 === 0); // [2] number[]
+
+// const c : Arr <number|string> = [1,'2',3,'4',5];
+// const d = c.filter((v): v is string => typeof v === 'string');
+
+
+// const predicate = (v:string | number) : v is number => typeof v ==='number';
+// const e = c.filter((v): v is string => typeof v === 'number'); //[1,2,3] number[];
+
+
+
+//공변성, 반공변성, 이변성, 불변성
+
+// function a<T>(x: T): T{
+//     if(typeof x == 'number') {
+//         return +x as T;
+//     }else return x;
+// }
+
+// a('1');
+
+// type B = (x:string) => number|string;
+// const b:B = a;
+
+
+// function a(x:string|number):number{
+//  return 0;
+// }
+
+// type B = (x:string) => number|string;
+// let b:B =a;
+// b('123');
+
+//리턴값은 넓은 타입으로 메개변수는 좁은 타입으로
+
+
+
+// declare function add(x:number, y:number, z?:number): number;
+
+
+// add(1,2);
+// add(2,3);
+// add(2,3,4);
+
+
+interface Axios{
+    get():void;
 }
+class CustomError extends Error{
+    response?:{
+        data: any;
+    }
+}
+declare const axios:Axios;
 
-const predicate = (value: string|number):value is string => typeof value == 'string';
-const filterd = ['1', 2, 3, '4', 5].filter(predicate );
-
+(async ()=>{
+    try{
+        await axios.get();
+    }catch(err:unknown){
+        if(err instanceof CustomError){
+            const customError = err;
+            console.error(customError.response?.data);
+            customError.response?.data;
+        }
+    }
+})();
