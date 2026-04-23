@@ -619,24 +619,78 @@
 // add(2,3,4);
 
 
-interface Axios{
-    get():void;
-}
-class CustomError extends Error{
-    response?:{
-        data: any;
-    }
-}
-declare const axios:Axios;
+// interface Axios{
+//     get():void;
+// }
+// class CustomError extends Error{
+//     response?:{
+//         data: any;
+//     }
+// }
+// declare const axios:Axios;
 
-(async ()=>{
-    try{
-        await axios.get();
-    }catch(err:unknown){
-        if(err instanceof CustomError){
-            const customError = err;
-            console.error(customError.response?.data);
-            customError.response?.data;
-        }
-    }
-})();
+// (async ()=>{
+//     try{
+//         await axios.get();
+//     }catch(err:unknown){
+//         if(err instanceof CustomError){
+//             const customError = err;
+//             console.error(customError.response?.data);
+//             customError.response?.data;
+//         }
+//     }
+// })();
+
+//유틸리티 타입스
+// interface Profile {
+//     name : string,
+//     age : number,
+//     married : boolean,
+// }
+
+
+// const zerocho : Profile = {
+//     name: 'zerocho',
+//     age: 29,
+//     married: false,
+// }
+
+// //Partial -> 모든 타입을 필수값이 아닌 옵셔널로 만든다.
+// const newZerocho : Partial<Profile> = {
+//     name: 'zerocho',
+//     age : 29,
+// }
+// // == Partial와 같은 내용
+// type P<T> = {
+//     [key in keyof T]? : T[key];
+// }
+
+
+
+//---
+interface Profile {
+    name : string,
+    age : number,
+    married : boolean,
+}
+
+
+const zerocho : Profile = {
+    name: 'zerocho',
+    age: 29,
+    married: false,
+}
+
+//Partial -> 모든 타입을 필수값이 아닌 옵셔널로 만든다.
+//Omit , Pick
+const newZerocho : Omit<Profile, 'married'> = {
+    name: 'zerocho',
+    age : 29,
+}
+
+type P <T , S extends keyof T> = {
+    [key in keyof S] : S[key];
+}
+
+
+type O <T , S extends keyof T> = P<T,Exclude<keyof T,S>>;
