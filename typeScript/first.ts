@@ -683,14 +683,44 @@ const zerocho : Profile = {
 
 //Partial -> 모든 타입을 필수값이 아닌 옵셔널로 만든다.
 //Omit , Pick
-const newZerocho : Omit<Profile, 'married'> = {
-    name: 'zerocho',
-    age : 29,
-}
+// const newZerocho : Omit<Profile, 'married'> = {
+//     name: 'zerocho',
+//     age : 29,
+// }
 
 type P <T , S extends keyof T> = {
     [key in keyof S] : S[key];
 }
 
 
-type O <T , S extends keyof T> = P<T,Exclude<keyof T,S>>;
+type A = Exclude<keyof Profile, 'married'>;
+
+type Animal = 'Cat'| 'Dog' | 'Human';
+type Mammal = Exclude<Animal, 'Human'>;
+
+// const newZerocho: Pick <Profile , A>  = {
+//     name: 'zerocho',
+//     age : 29,
+// };
+
+
+// const newZerocho: { [P in A] : Profile[P] }  = {
+//     name: 'zerocho',
+//     age : 29,
+// };
+
+
+
+type O<T, S extends keyof any> = Pick<T, Exclude<keyof T,S>>;
+
+const newXX : O <Profile, 'married'> ={
+     name: 'zerocho',
+     age : 29,
+}
+
+
+
+
+
+
+
