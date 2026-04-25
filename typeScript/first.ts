@@ -668,18 +668,18 @@
 
 
 //---
-interface Profile {
-    name : string,
-    age : number,
-    married : boolean,
-}
+// interface Profile {
+//     name : string,
+//     age : number,
+//     married : boolean,
+// }
 
 
-const zerocho : Profile = {
-    name: 'zerocho',
-    age: 29,
-    married: false,
-}
+// const zerocho : Profile = {
+//     name: 'zerocho',
+//     age: 29,
+//     married: false,
+// }
 
 //Partial -> 모든 타입을 필수값이 아닌 옵셔널로 만든다.
 //Omit , Pick
@@ -688,15 +688,15 @@ const zerocho : Profile = {
 //     age : 29,
 // }
 
-type P <T , S extends keyof T> = {
-    [key in keyof S] : S[key];
-}
+// type P <T , S extends keyof T> = {
+//     [key in keyof S] : S[key];
+// }
 
 
-type A = Exclude<keyof Profile, 'married'>;
+// type A = Exclude<keyof Profile, 'married'>;
 
-type Animal = 'Cat'| 'Dog' | 'Human';
-type Mammal = Exclude<Animal, 'Human'>;
+// type Animal = 'Cat'| 'Dog' | 'Human';
+// type Mammal = Exclude<Animal, 'Human'>;
 
 // const newZerocho: Pick <Profile , A>  = {
 //     name: 'zerocho',
@@ -711,16 +711,88 @@ type Mammal = Exclude<Animal, 'Human'>;
 
 
 
-type O<T, S extends keyof any> = Pick<T, Exclude<keyof T,S>>;
+// type O<T, S extends keyof any> = Pick<T, Exclude<keyof T,S>>;
 
-const newXX : O <Profile, 'married'> ={
-     name: 'zerocho',
-     age : 29,
+// const newXX : O <Profile, 'married'> ={
+//      name: 'zerocho',
+//      age : 29,
+// }
+
+
+// interface Profile {
+//     name?: string,
+//     age?: number,
+//     married?:boolean,
+
+// }
+// type Name = Profile ['name'];
+
+
+// //-? 는 옵셔널을 다 제거해라..
+// type R<T>= {
+//     [key in keyof T] -? : T[key];
+// }
+
+// const zerocho : Readonly <Profile>={
+//     name:'zerocho',
+//     age:29,
+//     married: false,
+// }
+
+
+
+// interface Obj {
+//     [key : string] : number;
+// }
+
+// type R<T extends keyof any ,S> = {
+//     [key in T] : S
+// }
+
+// // const a:Obj = { a:3,b:5, c:7 };
+// const a:  R<string, number> = { a:3,b:5, c:7 };
+
+// type A = string | null | undefined | boolean | number;
+
+
+// type B = NonNullable<A>;
+
+// type N <T> = T extends null | undefined ? never : T; // string | boolean | number
+
+
+function zip(x: number, y : string, z: boolean):{x: number, y : string, z: boolean}{
+    return {x,y,z};
+}
+
+type P<T extends (...args : any) => any> = T extends ( ...args : infer A) => any ? A : never;
+type Params = Parameters<typeof zip>;
+type Ret = ReturnType<typeof zip>;
+type Params2 = P<typeof zip>;
+type Frist = Params[0];
+
+
+// type ConstructorParameters<T extends abstract new (...args: any) => any> = T extends abstract new (...args: infer P) => any ? P : never;
+// type InstanceType<T extends abstract new (...args: any) => any> = T extends abstract new (...args: any) => infer R ? R : any;
+
+
+
+class A  {
+    a: string;
+    b: number;
+    c: boolean;
+    constructor (a: string, b: number, c:boolean){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
 }
 
 
+const c = new A('123', 456, true);
 
+type C = ConstructorParameters<typeof A>;
+type I = InstanceType<typeof A>
 
+const a:I = new A('123', 456, true);
 
-
-
+const cc : C = ['132',456,true];
