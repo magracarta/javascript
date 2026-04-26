@@ -41,34 +41,42 @@
 // const add5 = add.bind(null,1,2,3,4,5);
 
 
-const a = [1,2,3,[1,2],[[1],['22']]].flat(2);
+// const a = [1,2,3,[1,2],[[1],['22']]].flat(2);
 
-const b = [1,2,3,[1,2]].flat();
-
-
-type A = {
-    name : string,
-    age : number,
-}
-
-type B = A[1 extends number ? 'age':'name'];
+// const b = [1,2,3,[1,2]].flat();
 
 
+// type A = {
+//     name : string,
+//     age : number,
+// }
+
+// type B = A[1 extends number ? 'age':'name'];
 
 
 
+    function startAndEnd(originalMethod : any, context: ClassDecoratorContext){
+        return function replacementMethod(this: any , ...args: any[]){
+            console.log('start');
+            const result = originalMethod.call(this, ...args);
+            console.log('end');
 
+            return result;
+        }
+    }
 
+    class A{
+        @startAndEnd
+        eat(){
+            console.log('EAT');
+        }
+        @startAndEnd
+        work(){
+            console.log('WORK');
+        }
+        @startAndEnd
+        sleap(){
+            console.log('SLEAP');
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    }
