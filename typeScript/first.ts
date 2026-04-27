@@ -760,15 +760,15 @@
 // type N <T> = T extends null | undefined ? never : T; // string | boolean | number
 
 
-function zip(x: number, y : string, z: boolean):{x: number, y : string, z: boolean}{
-    return {x,y,z};
-}
+// function zip(x: number, y : string, z: boolean):{x: number, y : string, z: boolean}{
+//     return {x,y,z};
+// }
 
-type P<T extends (...args : any) => any> = T extends ( ...args : infer A) => any ? A : never;
-type Params = Parameters<typeof zip>;
-type Ret = ReturnType<typeof zip>;
-type Params2 = P<typeof zip>;
-type Frist = Params[0];
+// type P<T extends (...args : any) => any> = T extends ( ...args : infer A) => any ? A : never;
+// type Params = Parameters<typeof zip>;
+// type Ret = ReturnType<typeof zip>;
+// type Params2 = P<typeof zip>;
+// type Frist = Params[0];
 
 
 // type ConstructorParameters<T extends abstract new (...args: any) => any> = T extends abstract new (...args: infer P) => any ? P : never;
@@ -776,23 +776,64 @@ type Frist = Params[0];
 
 
 
-class A  {
-    a: string;
-    b: number;
-    c: boolean;
-    constructor (a: string, b: number, c:boolean){
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
-}
+// class A  {
+//     a: string;
+//     b: number;
+//     c: boolean;
+//     constructor (a: string, b: number, c:boolean){
+//         this.a = a;
+//         this.b = b;
+//         this.c = c;
+//     }
+// }
 
 
-const c = new A('123', 456, true);
+// const c = new A('123', 456, true);
 
-type C = ConstructorParameters<typeof A>;
-type I = InstanceType<typeof A>
+// type C = ConstructorParameters<typeof A>;
+// type I = InstanceType<typeof A>
 
-const a:I = new A('123', 456, true);
+// const a:I = new A('123', 456, true);
 
-const cc : C = ['132',456,true];
+// const cc : C = ['132',456,true];
+
+
+
+
+const p1 = Promise.resolve(1).then((a)=> a+1).then((a)=>a+1).then((a) => a.toString());
+// Promise<number>, Promise<number> , Promise<number> Promise<string>
+
+
+const p2 = Promise.resolve(2); //Promise<number>
+const p3 = new Promise((res,rej)=>{
+    setTimeout(res, 1000);
+});
+//Promise<unknown>
+
+
+Promise.all([p1,p2,p3]).then((result)=>{
+    console.log(result); // ['3', 2  undefined]
+});
+
+
+// type Result = Awaited<Promise<Promise<Promise<number>>>>;
+
+
+type Result = Awaited<{then : ((v:number)=> number)}>;//thenable
+
+//T = [p1,p2,p3]  { '0' : p1, '1' : p2 , '2' : p3 , length: 3 }
+// keyof T = '0' | '1' | '2' | 'length'
+
+
+const arr = [1,2,3] as const;
+type Arr = keyof typeof arr;
+const key : Arr = 100;
+
+
+
+
+
+
+
+
+
