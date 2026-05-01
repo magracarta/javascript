@@ -55,7 +55,7 @@
 
 
 
-    function startAndEnd(originalMethod : any, context: ClassDecoratorContext){
+    function startAndEnd(originalMethod : any, context: ClassMethodDecoratorContext){
         return function replacementMethod(this: any , ...args: any[]){
             console.log('start');
             const result = originalMethod.call(this, ...args);
