@@ -7,7 +7,9 @@ interface Post {
     body:string,
 };
 interface Created {
-    
+     id:number,
+     title:string,
+    body:string,
 };
 interface Data {};
 
