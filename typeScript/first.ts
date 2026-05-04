@@ -836,4 +836,19 @@ const key : Arr = 100;
 
 
 
+type Brand<K, T> = K & {_brand:T}
 
+type EUR = Brand<number, 'EUR'>;
+type USD = Brand<number, 'USD'>;
+type KRW = Brand<number, 'KRW'>;
+
+const usd = 10 as USD;
+const eur = 10 as EUR;
+const krw = 2000 as KRW;
+
+function EURToUsd(EUR:EUR): number{
+    return (EUR * 1.18);
+}
+console.log(`USD: ${EURToUsd(eur)}`);
+
+// EURToUsd(krw);

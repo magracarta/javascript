@@ -1,6 +1,14 @@
-import React, { useState, useCallback, useRef, type FunctionComponent, type ReactElement, type FC, type ReactNode } from 'react';
+import  { useState, useCallback, useRef, type FunctionComponent, type ReactElement, type FC, type ReactNode, useEffect, Component } from 'react';
 
 // (prop) => JSX
+
+type A = ({
+  aa:string;
+  bb(x: number): string;
+})['bb'];
+
+// type AA = A['aa'];
+// type BB = A['bb'];
 
 interface P {
   name : string,
@@ -9,9 +17,28 @@ interface P {
 }
 const WordRelay : FC<P> = (props) => {
     const [word, setWord] = useState<string>('제로초');
+    // const [word, setWord] = useState(()=>{
+    //   // 레이지 인잇 -> 복잡한 함수일때 사용.
+    //   return 복잡한함수();
+    // });
     const [value, setValue] = useState('');
     const [result, setResult] = useState('');
     const inputEl = useRef<HTMLInputElement>(null);
+
+    const deps : readonly any[] = []; 
+
+    useEffect(()=>{
+      console.log('useEffect');
+    },deps);
+
+    useEffect(()=>{
+      console.log();
+      const func = async()=>{
+        // await axios.post();
+      }
+
+      func();
+    },[]);
 
     const onSubmitForm = useCallback<(e: React.FormEvent) => void>((e) => {
         e.preventDefault();
