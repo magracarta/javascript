@@ -4,12 +4,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsx src/chapter5.ts",
+    "dev": "tsx watch src/chapter5.ts"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "@types/node": "^25.9.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.0"
   }
 }

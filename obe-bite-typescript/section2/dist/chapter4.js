@@ -17,4 +17,15 @@ let user2 = {
     bio: "안녕하세요",
     location: "부천사"
 };
+//인덱스 시그니처
+let conutryCodes = {
+    Korea: 'ko',
+    UniteState: "us",
+    UniteKingdom: "uk",
+};
+let countryNumberCodes = {
+    Korea: 410,
+    UniteState: 840,
+    UniteKingdom: 826,
+};
 export {};
