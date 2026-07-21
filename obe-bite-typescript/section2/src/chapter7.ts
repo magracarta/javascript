@@ -10,8 +10,8 @@ function func2() :void{
     console.log("hello");
 }
 
-let a: void;
-a = undefined;
+// let a: void;
+// a = undefined;
 
 // never
 // never -> 존재하지 않는
@@ -23,3 +23,13 @@ function func3():never{
 function func4():never{
     throw new Error();
 }
+
+let anyVar : any;
+let a: never;
+// a = 1;
+// a = {};
+// a = "";
+// a = undefined;
+// a = null;
+
+// a= anyVar;
