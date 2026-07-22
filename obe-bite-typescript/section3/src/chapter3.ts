@@ -1,60 +1,83 @@
 /**
- * unknown 타입
+ * 기본 타입간의 호환성
  */
 
-function unknownExam(){
-    let a : unknown = 1;
-    let b : unknown = "hello";
-    let c : unknown = true;
-    let d : unknown = null;
-    let e : unknown = undefined;
-    
+let num1: number =10;
+let num2: 10 =10;
 
-    let unknownVar : unknown;
 
-    // let num: number = unknownVar;
-    // let str: number = unknownVar;
-    // let bool: number = unknownVar;
-}
+num1 = num2;
 
 /**
- * Never 타입 -> 공집합
- * 어떤 값도 들어갈수 없는 경우에 사용
+ * 객체 타입간의 호환성
+ * -> 어떤 객체타입을 다른 객체 타입으로 취근해도 괜찮은가?
  */
-function neverExamp(){
-    function neverFunc():never{
-        while(true){}
-    }
 
-    let num:number = neverFunc();
-    let str:string = neverFunc();
-    let bool:boolean = neverFunc();
-
-    // let never1 : never = 10;
-    // let never2 : never = "str";
-    // let never3 : never = true;
+type Animal = {
+    name : string;
+    color : string;
 }
+
+type Dog = {
+    name : string;
+    color : string;
+    breed : string;
+}
+
+let animal : Animal={
+    name:"기린",
+    color:"yellow"
+};
+
+let dog:Dog ={
+    name:"돌돌이",
+    color:"brown",
+    breed:"진도"
+}
+
+
+animal = dog;
+// dog = animal;
+
+type Book = {
+    name:string;
+    price : number;
+}
+
+type ProgrammingBook = {
+    name:string;
+    price:number;
+    skill:string;
+
+};
+
+let book:Book;
+let programmingBook:ProgrammingBook={
+    name:"리액트",
+    price:33000,
+    skill:"reactjs",
+};
+
+book = programmingBook;
+// programmingBook =book; 다운 캐스팅으로 오류가 남.
 
 /**
- * Void 타입
+ * 초과 프로퍼티 검사
  */
-function voidExam(){
-    function voidFun(): void{
-        console.log("hi");
-    }
-    let voidVar : void = undefined;
+let book2 : Book ={
+    name:"리액트",
+    price:33000,
+    // skill:"reactjs",
 }
 
-/**
- * any 타입
- */
-function anyExam(){
-    let unknownVar : unknown;
-    let anyVar : any;
-    let undefineVar : undefined;
-    let neverVar : never;
+let book3: Book = programmingBook;
 
-    anyVar = unknownVar;
-    undefineVar = anyVar;
-    neverVar : anyVar;
+function func(book: Book){
+    console.log(book);
 }
+
+func({
+    name:"합입 북",
+    price:3300,
+    // skill:"??"
+});
