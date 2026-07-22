@@ -72,7 +72,7 @@ let book2 : Book ={
 
 let book3: Book = programmingBook;
 
-function func(book: Book){
+function func(book: Book):void{
     console.log(book);
 }
 
