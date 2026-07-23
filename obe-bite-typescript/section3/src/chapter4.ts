@@ -58,4 +58,20 @@ let variable : number & string;
 
 
 
+type Dog2 ={
+    name:string;
+    color : string;
+}
 
+type Person2 = {
+    name:string;
+    language : string;
+}
+
+type InterSection2 = Dog2 & Person2;
+
+let interSection2 : InterSection2 = {
+    name:"",
+    color :"",
+    language :"",
+}
